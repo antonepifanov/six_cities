@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const STAR_WIDTH = 20;
 
@@ -42,6 +43,21 @@ const PlaceCard = ({card}) => {
       </div>
     </article>
   );
+};
+
+PlaceCard.propTypes = {
+  card: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    mark: PropTypes.string,
+    href: PropTypes.string.isRequired,
+    src: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    priceText: PropTypes.string.isRequired,
+    isBookmark: PropTypes.bool,
+    rating: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default PlaceCard;

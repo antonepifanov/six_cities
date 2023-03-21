@@ -1,6 +1,6 @@
 export const PLACE_CARDS = [
   {
-    id: `1`,
+    id: 1,
     mark: `Premium`,
     href: `#`,
     src: `img/apartment-01.jpg`,
@@ -12,7 +12,7 @@ export const PLACE_CARDS = [
     type: `Apartment`,
   },
   {
-    id: `2`,
+    id: 2,
     href: `#`,
     src: `img/room.jpg`,
     price: `€80`,
@@ -23,7 +23,7 @@ export const PLACE_CARDS = [
     type: `Private room`,
   },
   {
-    id: `3`,
+    id: 3,
     href: `#`,
     src: `img/apartment-02.jpg`,
     price: `€132`,
@@ -34,7 +34,7 @@ export const PLACE_CARDS = [
     type: `Apartment`,
   },
   {
-    id: `4`,
+    id: 4,
     mark: `Premium`,
     href: `#`,
     src: `img/apartment-03.jpg`,
@@ -46,7 +46,7 @@ export const PLACE_CARDS = [
     type: `Apartment`,
   },
   {
-    id: `5`,
+    id: 5,
     href: `#`,
     src: `img/room.jpg`,
     price: `€80`,
@@ -57,3 +57,5 @@ export const PLACE_CARDS = [
     type: `Private room`,
   },
 ];
+
+export const PLACES_COUNT = 312;
