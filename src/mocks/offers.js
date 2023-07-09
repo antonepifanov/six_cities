@@ -63,7 +63,7 @@ export default [
     maxAdults: 4,
     previewImage: `img/apartment-02.jpg`,
     price: 80,
-    rating: 4.5,
+    rating: 4.4,
     title: `Wood and stone place`,
     type: `Private room`
   },

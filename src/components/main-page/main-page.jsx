@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import PlaceCard from '../place-card/place-card';
 
-const MainPage = ({placeCards, placeCount}) => {
+const MainPage = ({placeCards}) => {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -70,7 +70,7 @@ const MainPage = ({placeCards, placeCount}) => {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{placeCount} places to stay in Amsterdam</b>
+              <b className="places__found">{placeCards.length} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -101,8 +101,7 @@ const MainPage = ({placeCards, placeCount}) => {
 };
 
 MainPage.propTypes = {
-  placeCards: PropTypes.array,
-  placeCount: PropTypes.number.isRequired,
+  placeCards: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default MainPage;
