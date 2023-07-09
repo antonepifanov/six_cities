@@ -7,23 +7,26 @@ import Room from '../room/room';
 import SignIn from '../sign-in/sign-in';
 import NotFoundPage from '../not-found-page/not-found-page';
 
-const App = ({placeCards, placeCount}) => (
+const App = ({placeCards, placeReviews}) => (
   <BrowserRouter>
     <Switch>
       <Route path="/" exact>
         <MainPage
           placeCards={placeCards}
-          placeCount={placeCount}
         />
       </Route>
       <Route path="/login" exact>
         <SignIn/>
       </Route>
       <Route path="/favorites" exact>
-        <Favorites/>
+        <Favorites
+          placeCards={placeCards}
+        />
       </Route>
       <Route path="/offer/:id" exact>
-        <Room/>
+        <Room
+          placeReviews={placeReviews}
+        />
       </Route>
       <Route>
         <NotFoundPage/>
@@ -33,8 +36,8 @@ const App = ({placeCards, placeCount}) => (
 );
 
 App.propTypes = {
-  placeCards: PropTypes.array,
-  placeCount: PropTypes.number.isRequired,
+  placeCards: PropTypes.arrayOf(PropTypes.object).isRequired,
+  placeReviews: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default App;
