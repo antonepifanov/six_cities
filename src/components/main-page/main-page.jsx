@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import PlaceCard from '../place-card/place-card';
+import CardsList from '../cards-list/cards-list';
 
 const MainPage = ({placeCards}) => {
   return (
@@ -86,9 +86,7 @@ const MainPage = ({placeCards}) => {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {placeCards.map((card) => <PlaceCard key={card.id} card={card}/>)}
-              </div>
+              <CardsList placeCards={placeCards}/>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>

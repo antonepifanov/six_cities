@@ -25,6 +25,7 @@ const App = ({placeCards, placeReviews}) => (
       </Route>
       <Route path="/offer/:id" exact>
         <Room
+          placeCards={placeCards}
           placeReviews={placeReviews}
         />
       </Route>
