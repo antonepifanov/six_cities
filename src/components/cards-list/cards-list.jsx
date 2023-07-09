@@ -4,7 +4,12 @@ import PlaceCard from '../place-card/place-card';
 
 const CardsList = ({placeCards}) => (
   <div className="cities__places-list places__list tabs__content">
-    {placeCards.map((card) => <PlaceCard key={card.id} card={card}/>)}
+    {placeCards.map((card) =>
+      <PlaceCard
+        key={card.id}
+        card={card}
+      />)
+    }
   </div>
 );
 
