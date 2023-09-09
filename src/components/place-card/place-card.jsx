@@ -3,10 +3,15 @@ import PropTypes from 'prop-types';
 
 const STAR_WIDTH = 20;
 
-const PlaceCard = ({card}) => {
+const PlaceCard = ({card, onMouseEnter, onMouseLeave}) => {
   const {isFavorite, isPremium, previewImage, price, rating, title, type} = card;
+  const handleMouseEnter = () => onMouseEnter();
+  const handleMouseLeave = () => onMouseLeave(null);
+
   return (
-    <article className="cities__place-card place-card">
+    <article className="cities__place-card place-card"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}>
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
@@ -64,6 +69,8 @@ PlaceCard.propTypes = {
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
   }).isRequired,
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired,
 };
 
 export default PlaceCard;
