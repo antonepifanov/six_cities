@@ -87,7 +87,7 @@ export default [
     },
     id: 3,
     images: [`img/apartment-03.jpg`, `img/room.jpg`],
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     location: {
       latitude: 52.35514938496378,
@@ -121,7 +121,7 @@ export default [
     },
     id: 4,
     images: [`img/room.jpg`, `img/apartment-01.jpg`],
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     location: {
       latitude: 52.45514938496378,
