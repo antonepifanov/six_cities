@@ -2,8 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {CARD_TYPES} from '../../prop-types/prop-types';
-
-const STAR_WIDTH = 20;
+import {STAR_WIDTH} from '../../constants/constants';
 
 const PlaceCard = ({card, onMouseEnter, onMouseLeave}) => {
   const {id, isFavorite, isPremium, previewImage, price, rating, title, type} = card;
