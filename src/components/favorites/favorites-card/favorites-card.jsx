@@ -1,9 +1,11 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import {CARD_TYPES} from '../../../prop-types/prop-types';
 
+const STAR_WIDTH = 20;
+
 const FavoritesCard = ({card}) => {
-  const {isFavorite, isPremium, previewImage, price, rating, title, type} = card;
-  const STAR_WIDTH = 20;
+  const {id, isFavorite, isPremium, previewImage, price, rating, title, type} = card;
 
   return (
     <article className="favorites__card place-card">
@@ -13,9 +15,9 @@ const FavoritesCard = ({card}) => {
         </div>
       )}
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={`/offer/${id}`}>
           <img className="place-card__image" src={previewImage} width="150" height="110" alt="Place image"/>
-        </a>
+        </Link>
       </div>
       <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">

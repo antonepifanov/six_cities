@@ -9,7 +9,7 @@ export default [
       },
       name: `Amsterdam`
     },
-    description: `A quiet cozy and picturesque that hides behind a river by the unique lightness of Amsterdam.`,
+    description: `A quiet cozy and picturesque that hides behind a river by the unique lightness of Amsterdam. An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     goods: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
     host: {
       avatarUrl: `img/avatar-angelina.jpg`,
@@ -26,7 +26,7 @@ export default [
       longitude: 4.673877537499948,
       zoom: 8
     },
-    maxAdults: 4,
+    maxAdults: 1,
     previewImage: `img/apartment-01.jpg`,
     price: 120,
     rating: 4.8,

@@ -1,11 +1,12 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {CARD_TYPES} from '../../prop-types/prop-types';
 
 const STAR_WIDTH = 20;
 
 const PlaceCard = ({card, onMouseEnter, onMouseLeave}) => {
-  const {isFavorite, isPremium, previewImage, price, rating, title, type} = card;
+  const {id, isFavorite, isPremium, previewImage, price, rating, title, type} = card;
   const handleMouseEnter = () => onMouseEnter();
   const handleMouseLeave = () => onMouseLeave(null);
 
@@ -19,9 +20,9 @@ const PlaceCard = ({card, onMouseEnter, onMouseLeave}) => {
         </div>
       )}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={`/offer/${id}`}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image"/>
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">

@@ -20,3 +20,5 @@ export const CARD_TYPES = PropTypes.shape({
 }).isRequired;
 
 export const OFFERS_TYPES = PropTypes.arrayOf(PropTypes.object).isRequired;
+
+export const REVIEWS_TYPES = PropTypes.arrayOf(PropTypes.object).isRequired;
