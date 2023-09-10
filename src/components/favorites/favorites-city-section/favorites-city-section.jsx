@@ -1,4 +1,5 @@
 import React from 'react';
+import {OFFERS_TYPES} from '../../../prop-types/prop-types';
 import PropTypes from 'prop-types';
 import FavoritesCard from '../favorites-card/favorites-card';
 
@@ -26,7 +27,7 @@ const FavoritesCitySection = ({city, favoriteCards}) => (
 
 FavoritesCitySection.propTypes = {
   city: PropTypes.string.isRequired,
-  favoriteCards: PropTypes.arrayOf(PropTypes.object).isRequired,
+  favoriteCards: OFFERS_TYPES,
 };
 
 export default FavoritesCitySection;

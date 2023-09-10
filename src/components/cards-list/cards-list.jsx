@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import PropTypes from 'prop-types';
+import {OFFERS_TYPES} from '../../prop-types/prop-types';
 import PlaceCard from '../place-card/place-card';
 
 const CardsList = ({placeCards}) => {
@@ -19,7 +19,7 @@ const CardsList = ({placeCards}) => {
 };
 
 CardsList.propTypes = {
-  placeCards: PropTypes.arrayOf(PropTypes.object).isRequired,
+  placeCards: OFFERS_TYPES,
 };
 
 export default CardsList;

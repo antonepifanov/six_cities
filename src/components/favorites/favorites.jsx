@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import {OFFERS_TYPES} from '../../prop-types/prop-types';
 import FavoritesCitySection from './favorites-city-section/favorites-city-section';
 
 const Favorites = ({placeCards}) => {
@@ -61,7 +61,7 @@ const Favorites = ({placeCards}) => {
 };
 
 Favorites.propTypes = {
-  placeCards: PropTypes.arrayOf(PropTypes.object).isRequired,
+  placeCards: OFFERS_TYPES,
 };
 
 export default Favorites;

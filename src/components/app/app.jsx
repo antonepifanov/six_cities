@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import {OFFERS_TYPES} from '../../prop-types/prop-types';
 import MainPage from '../main-page/main-page';
 import Favorites from '../favorites/favorites';
 import Room from '../room/room';
@@ -37,7 +38,7 @@ const App = ({placeCards, placeReviews}) => (
 );
 
 App.propTypes = {
-  placeCards: PropTypes.arrayOf(PropTypes.object).isRequired,
+  placeCards: OFFERS_TYPES,
   placeReviews: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
