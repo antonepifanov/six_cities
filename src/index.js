@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {PLACE_CARDS, PLACES_COUNT} from './mock-data';
+import offers from './mocks/offers';
+import reviews from './mocks/reviews';
 import App from './components/app/app';
 
 ReactDOM.render(
     <App
-      placeCards={PLACE_CARDS}
-      placeCount={PLACES_COUNT}
+      placeCards={offers}
+      placeReviews={reviews}
     />,
     document.querySelector(`#root`)
 );

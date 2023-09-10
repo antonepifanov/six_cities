@@ -1,29 +1,24 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import PropTypes from 'prop-types';
-import {CARD_TYPES} from '../../prop-types/prop-types';
-import {STAR_WIDTH} from '../../constants/constants';
+import {CARD_TYPES} from '../../../prop-types/prop-types';
+import {STAR_WIDTH} from '../../../constants/constants';
 
-const PlaceCard = ({card, onMouseEnter, onMouseLeave}) => {
+const FavoritesCard = ({card}) => {
   const {id, isFavorite, isPremium, previewImage, price, rating, title, type} = card;
-  const handleMouseEnter = () => onMouseEnter();
-  const handleMouseLeave = () => onMouseLeave(null);
 
   return (
-    <article className="cities__place-card place-card"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}>
+    <article className="favorites__card place-card">
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       )}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className="favorites__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${id}`}>
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image"/>
+          <img className="place-card__image" src={previewImage} width="150" height="110" alt="Place image"/>
         </Link>
       </div>
-      <div className="place-card__info">
+      <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
@@ -33,7 +28,7 @@ const PlaceCard = ({card, onMouseEnter, onMouseLeave}) => {
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
-            <span className="visually-hidden">To bookmarks</span>
+            <span className="visually-hidden">In bookmarks</span>
           </button>
         </div>
         <div className="place-card__rating rating">
@@ -51,10 +46,8 @@ const PlaceCard = ({card, onMouseEnter, onMouseLeave}) => {
   );
 };
 
-PlaceCard.propTypes = {
+FavoritesCard.propTypes = {
   card: CARD_TYPES,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
 };
 
-export default PlaceCard;
+export default FavoritesCard;
