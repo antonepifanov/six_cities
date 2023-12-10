@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import {OFFERS_TYPES} from '../../prop-types/prop-types';
+import React from 'react';
+
+import {OFFERS_TYPES, HANDLER_TYPES} from '../../prop-types/prop-types';
 import PlaceCard from '../place-card/place-card';
 
-const CardsList = ({placeCards}) => {
-  const [, setActiveItem] = useState(null);
+const CardsList = ({placeCards, onMouseEnter, onMouseLeave}) => {
 
   return (
     <div className="cities__places-list places__list tabs__content">
@@ -11,8 +11,8 @@ const CardsList = ({placeCards}) => {
         <PlaceCard
           key={card.id}
           card={card}
-          onMouseEnter={() => setActiveItem(card)}
-          onMouseLeave={() => setActiveItem(null)}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
         />)
       }
     </div>);
@@ -20,6 +20,8 @@ const CardsList = ({placeCards}) => {
 
 CardsList.propTypes = {
   placeCards: OFFERS_TYPES,
+  onMouseEnter: HANDLER_TYPES,
+  onMouseLeave: HANDLER_TYPES,
 };
 
 export default CardsList;

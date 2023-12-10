@@ -1,18 +1,16 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import PropTypes from 'prop-types';
-import {CARD_TYPES} from '../../prop-types/prop-types';
+import {CARD_TYPES, HANDLER_TYPES} from '../../prop-types/prop-types';
 import {STAR_WIDTH} from '../../constants/constants';
 
 const PlaceCard = ({card, onMouseEnter, onMouseLeave}) => {
   const {id, isFavorite, isPremium, previewImage, price, rating, title, type} = card;
-  const handleMouseEnter = () => onMouseEnter();
-  const handleMouseLeave = () => onMouseLeave(null);
+  const onMouseEnterHandler = () => onMouseEnter(card);
 
   return (
     <article className="cities__place-card place-card"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}>
+      onMouseEnter={onMouseEnterHandler}
+      onMouseLeave={onMouseLeave}>
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
@@ -53,8 +51,8 @@ const PlaceCard = ({card, onMouseEnter, onMouseLeave}) => {
 
 PlaceCard.propTypes = {
   card: CARD_TYPES,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
+  onMouseEnter: HANDLER_TYPES,
+  onMouseLeave: HANDLER_TYPES,
 };
 
 export default PlaceCard;

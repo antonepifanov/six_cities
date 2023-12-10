@@ -22,3 +22,5 @@ export const CARD_TYPES = PropTypes.shape({
 export const OFFERS_TYPES = PropTypes.arrayOf(PropTypes.object).isRequired;
 
 export const REVIEWS_TYPES = PropTypes.arrayOf(PropTypes.object).isRequired;
+
+export const HANDLER_TYPES = PropTypes.func.isRequired;

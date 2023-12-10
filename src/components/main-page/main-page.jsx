@@ -1,9 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {OFFERS_TYPES} from '../../prop-types/prop-types';
 import CardsList from '../cards-list/cards-list';
+import Map from "../map/map";
 
 const MainPage = ({placeCards}) => {
+  const [activeItem, setActiveItem] = useState(null);
+  const onMouseEnterHandler = (item) => setActiveItem(item);
+  const onMouseLeaveHandler = () => setActiveItem(null);
+
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -86,10 +91,19 @@ const MainPage = ({placeCards}) => {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <CardsList placeCards={placeCards}/>
+              <CardsList
+                placeCards={placeCards}
+                onMouseEnter={onMouseEnterHandler}
+                onMouseLeave={onMouseLeaveHandler}
+              />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <section className="cities__map map">
+                <Map
+                  items={placeCards}
+                  activeItem={activeItem}
+                />
+              </section>
             </div>
           </div>
         </div>
