@@ -100,7 +100,7 @@ const MainPage = ({placeCards}) => {
             <div className="cities__right-section">
               <section className="cities__map map">
                 <Map
-                  items={placeCards}
+                  placeCards={placeCards}
                   activeItem={activeItem}
                 />
               </section>
