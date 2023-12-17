@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import {OFFERS_TYPES, REVIEWS_TYPES} from '../../prop-types/prop-types';
 import MainPage from '../main-page/main-page';
@@ -7,12 +7,19 @@ import Room from '../room/room';
 import SignIn from '../sign-in/sign-in';
 import NotFoundPage from '../not-found-page/not-found-page';
 
-const App = ({placeCards, placeReviews}) => (
-  <BrowserRouter>
+const App = ({placeCards, placeReviews}) => {
+  const [activeItem, setActiveItem] = useState(null);
+  const onMouseEnterHandler = (item) => setActiveItem(item);
+  const onMouseLeaveHandler = () => setActiveItem(null);
+
+  return <BrowserRouter>
     <Switch>
       <Route path="/" exact>
         <MainPage
           placeCards={placeCards}
+          onMouseEnterHandler={onMouseEnterHandler}
+          onMouseLeaveHandler={onMouseLeaveHandler}
+          activeItem={activeItem}
         />
       </Route>
       <Route path="/login" exact>
@@ -27,14 +34,17 @@ const App = ({placeCards, placeReviews}) => (
         <Room
           placeCards={placeCards}
           placeReviews={placeReviews}
+          onMouseEnterHandler={onMouseEnterHandler}
+          onMouseLeaveHandler={onMouseLeaveHandler}
+          activeItem={activeItem}
         />
       </Route>
       <Route>
         <NotFoundPage/>
       </Route>
     </Switch>
-  </BrowserRouter>
-);
+  </BrowserRouter>;
+};
 
 App.propTypes = {
   placeCards: OFFERS_TYPES,
