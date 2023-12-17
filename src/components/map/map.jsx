@@ -53,7 +53,7 @@ const Map = ({placeCards, activeItem}) => {
     return () => {
       markersGroup.clearLayers();
     };
-  }, [activeItem]);
+  }, [activeItem, placeCards]);
 
   return (
     <div id="map" style={{height: `100%`}} ref={mapRef}/>

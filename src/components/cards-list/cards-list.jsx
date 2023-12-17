@@ -1,24 +1,27 @@
 import React from 'react';
-import {OFFERS_TYPES, HANDLER_TYPES} from '../../prop-types/prop-types';
-import PlaceCard from '../place-card/place-card';
+import {OFFERS_TYPES, STRING_TYPES} from '../../prop-types/prop-types';
+import CardsListMain from '../cards-list-main/cards-list-main';
+import CardsListRoom from '../cards-list-room/cards-list-room';
 
-const CardsList = ({placeCards, onMouseEnter, onMouseLeave}) => (
-  <div className="cities__places-list places__list tabs__content">
-    {placeCards.map((card) =>
-      <PlaceCard
-        key={card.id}
-        card={card}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-      />)
+const CardsList = ({view, ...restProps}) => {
+  const getComponentByType = () => {
+    switch (view) {
+      case `room`:
+        return <CardsListRoom
+          view={view}
+          {...restProps}
+        />;
+      default:
+        return <CardsListMain {...restProps}/>;
     }
-  </div>
-);
+  };
+
+  return getComponentByType();
+};
 
 CardsList.propTypes = {
   placeCards: OFFERS_TYPES,
-  onMouseEnter: HANDLER_TYPES,
-  onMouseLeave: HANDLER_TYPES,
+  view: STRING_TYPES,
 };
 
 export default CardsList;

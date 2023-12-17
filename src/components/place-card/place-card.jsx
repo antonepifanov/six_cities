@@ -1,22 +1,23 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {CARD_TYPES, HANDLER_TYPES} from '../../prop-types/prop-types';
+import {CARD_TYPES, HANDLER_TYPES, STRING_TYPES} from '../../prop-types/prop-types';
 import {STAR_WIDTH} from '../../constants/constants';
 
-const PlaceCard = ({card, onMouseEnter, onMouseLeave}) => {
+const PlaceCard = ({view, className, card, onMouseEnterHandler, onMouseLeaveHandler}) => {
   const {id, isFavorite, isPremium, previewImage, price, rating, title, type} = card;
-  const onMouseEnterHandler = () => onMouseEnter(card);
+  const onMouseEnter = () => onMouseEnterHandler(card);
+  const onMouseLeave = () => onMouseLeaveHandler();
 
   return (
-    <article className="cities__place-card place-card"
-      onMouseEnter={onMouseEnterHandler}
+    <article className={`${className}__place-card place-card`}
+      onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}>
-      {isPremium && (
+      {!view && isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       )}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${className}__image-wrapper place-card__image-wrapper`}>
         <Link to={`/offer/${id}`}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image"/>
         </Link>
@@ -51,8 +52,10 @@ const PlaceCard = ({card, onMouseEnter, onMouseLeave}) => {
 
 PlaceCard.propTypes = {
   card: CARD_TYPES,
-  onMouseEnter: HANDLER_TYPES,
-  onMouseLeave: HANDLER_TYPES,
+  onMouseEnterHandler: HANDLER_TYPES,
+  onMouseLeaveHandler: HANDLER_TYPES,
+  className: STRING_TYPES,
+  view: STRING_TYPES,
 };
 
 export default PlaceCard;

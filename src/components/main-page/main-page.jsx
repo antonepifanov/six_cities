@@ -93,8 +93,8 @@ const MainPage = ({placeCards}) => {
               </form>
               <CardsList
                 placeCards={placeCards}
-                onMouseEnter={onMouseEnterHandler}
-                onMouseLeave={onMouseLeaveHandler}
+                onMouseEnterHandler={onMouseEnterHandler}
+                onMouseLeaveHandler={onMouseLeaveHandler}
               />
             </section>
             <div className="cities__right-section">

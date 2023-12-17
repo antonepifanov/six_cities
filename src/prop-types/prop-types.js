@@ -25,7 +25,7 @@ export const REVIEWS_TYPES = PropTypes.arrayOf(PropTypes.object).isRequired;
 
 export const HANDLER_TYPES = PropTypes.func.isRequired;
 
-export const CITY_TYPES = PropTypes.string.isRequired;
+export const STRING_TYPES = PropTypes.string;
 
 export const REVIEW_TYPES = PropTypes.shape({
   comment: PropTypes.string.isRequired,
