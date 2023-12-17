@@ -23,9 +23,15 @@ const Map = ({placeCards, activeItem}) => {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
       .addTo(mapRef.current);
+
+    return () => {
+      mapRef.current.remove();
+    };
   }, []);
 
   useEffect(() => {
+    const markersGroup = leaflet.layerGroup().addTo(mapRef.current);
+
     placeCards.forEach((item) => {
       const isActive = activeItem ? item.id === activeItem.id : false;
       const customIcon = leaflet.icon({
@@ -40,9 +46,13 @@ const Map = ({placeCards, activeItem}) => {
       {
         icon: customIcon
       })
-      .addTo(mapRef.current)
+      .addTo(markersGroup)
       .bindPopup(item.title);
     });
+
+    return () => {
+      markersGroup.clearLayers();
+    };
   }, [activeItem]);
 
   return (
