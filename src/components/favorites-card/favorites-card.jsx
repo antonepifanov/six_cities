@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {CARD_TYPES} from '../../../prop-types/prop-types';
-import {STAR_WIDTH} from '../../../constants/constants';
+import {CARD_TYPES} from '../../prop-types/prop-types';
+import {STAR_WIDTH} from '../../constants/constants';
 
 const FavoritesCard = ({card}) => {
   const {id, isFavorite, isPremium, previewImage, price, rating, title, type} = card;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {OFFERS_TYPES} from '../../prop-types/prop-types';
-import FavoritesCitySection from './favorites-city-section/favorites-city-section';
+import FavoritesCitySection from '../favorites-city-section/favorites-city-section';
 
 const Favorites = ({placeCards}) => {
   const favoriteCards = placeCards.filter((card) => card.isFavorite);

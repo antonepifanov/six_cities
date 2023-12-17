@@ -1,7 +1,7 @@
 import React from 'react';
 import {OFFERS_TYPES} from '../../prop-types/prop-types';
 import PropTypes from 'prop-types';
-import FavoritesCard from '../favorites/favorites-card/favorites-card';
+import FavoritesCard from '../favorites-card/favorites-card';
 
 const FavoritesCitySection = ({city, favoriteCards}) => (
   <li className="favorites__locations-items">
