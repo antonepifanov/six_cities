@@ -24,3 +24,13 @@ export const OFFERS_TYPES = PropTypes.arrayOf(PropTypes.object).isRequired;
 export const REVIEWS_TYPES = PropTypes.arrayOf(PropTypes.object).isRequired;
 
 export const HANDLER_TYPES = PropTypes.func.isRequired;
+
+export const CITY_TYPES = PropTypes.string.isRequired;
+
+export const REVIEW_TYPES = PropTypes.shape({
+  comment: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  rating: PropTypes.number.isRequired,
+  user: PropTypes.object.isRequired,
+});

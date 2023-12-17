@@ -1,6 +1,5 @@
 import React from 'react';
-import {OFFERS_TYPES} from '../../prop-types/prop-types';
-import PropTypes from 'prop-types';
+import {OFFERS_TYPES, CITY_TYPES} from '../../prop-types/prop-types';
 import FavoritesCard from '../favorites-card/favorites-card';
 
 const FavoritesCitySection = ({city, favoriteCards}) => (
@@ -26,7 +25,7 @@ const FavoritesCitySection = ({city, favoriteCards}) => (
 );
 
 FavoritesCitySection.propTypes = {
-  city: PropTypes.string.isRequired,
+  city: CITY_TYPES,
   favoriteCards: OFFERS_TYPES,
 };
 
