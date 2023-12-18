@@ -3,7 +3,7 @@ import {OFFERS_TYPES, CARD_TYPES} from '../../prop-types/prop-types';
 import leaflet from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-const Map = ({placeCards, activeItem}) => {
+const Map = ({placeCards, activeItem, room}) => {
   const mapRef = useRef(null);
   const [firstItem = {}] = placeCards;
 
@@ -27,7 +27,7 @@ const Map = ({placeCards, activeItem}) => {
     return () => {
       mapRef.current.remove();
     };
-  }, []);
+  }, [room]);
 
   useEffect(() => {
     const markersGroup = leaflet.layerGroup().addTo(mapRef.current);
@@ -53,7 +53,7 @@ const Map = ({placeCards, activeItem}) => {
     return () => {
       markersGroup.clearLayers();
     };
-  }, [activeItem, placeCards]);
+  }, [activeItem]);
 
   return (
     <div id="map" style={{height: `100%`}} ref={mapRef}/>
@@ -63,6 +63,7 @@ const Map = ({placeCards, activeItem}) => {
 Map.propTypes = {
   placeCards: OFFERS_TYPES,
   activeItem: CARD_TYPES,
+  room: CARD_TYPES,
 };
 
 export default Map;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Link, useParams} from 'react-router-dom';
 import CommentForm from '../comment-form/comment-form';
 import ReviewsList from '../reviews-list/reviews-list';
@@ -13,6 +13,10 @@ const Room = ({placeCards, placeReviews, onMouseEnterHandler, onMouseLeaveHandle
   const {bedrooms, images, isFavorite, isPremium, maxAdults, price, rating, title, type, goods, host, description} = room;
   const sentences = description.split(`. `);
   const nearPlaces = placeCards.filter((card) => card.id !== room.id).slice(0, 3);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   return <div className="page">
     <header className="header">
@@ -135,6 +139,7 @@ const Room = ({placeCards, placeReviews, onMouseEnterHandler, onMouseLeaveHandle
           <Map
             placeCards={nearPlaces}
             activeItem={activeItem}
+            room={room}
           />
         </section>
       </section>
