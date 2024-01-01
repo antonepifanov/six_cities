@@ -7,3 +7,12 @@ export const RATING_TITLES = [
   `good`,
   `perfect`,
 ];
+
+export const CITIES_LIST = [
+  `Paris`,
+  `Cologne`,
+  `Brussels`,
+  `Amsterdam`,
+  `Hamburg`,
+  `Dusseldorf`
+];

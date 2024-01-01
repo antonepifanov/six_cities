@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {OFFERS_TYPES, HANDLER_TYPES, CARD_TYPES} from '../../prop-types/prop-types';
 import CardsList from '../cards-list/cards-list';
 import Map from "../map/map";
+import Cities from '../cities/cities';
 
 const MainPage = ({placeCards, onMouseEnterHandler, onMouseLeaveHandler, activeItem}) => (
   <div className="page page--gray page--main">
@@ -29,48 +30,12 @@ const MainPage = ({placeCards, onMouseEnterHandler, onMouseLeaveHandler, activeI
     </header>
 
     <main className="page__main page__main--index">
-      <h1 className="visually-hidden">Cities</h1>
-      <div className="tabs">
-        <section className="locations container">
-          <ul className="locations__list tabs__list">
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Paris</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Cologne</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Brussels</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item tabs__item--active">
-                <span>Amsterdam</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Hamburg</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Dusseldorf</span>
-              </a>
-            </li>
-          </ul>
-        </section>
-      </div>
+      <Cities/>
       <div className="cities">
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{placeCards.length} places to stay in Amsterdam</b>
+            <b className="places__found">{+placeCards.length} {+placeCards.length === 1 ? `place` : `places`} to stay in Amsterdam</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex="0">

@@ -6,6 +6,7 @@ import Favorites from '../favorites/favorites';
 import Room from '../room/room';
 import SignIn from '../sign-in/sign-in';
 import NotFoundPage from '../not-found-page/not-found-page';
+import {CITIES_LIST} from '../../constants/constants';
 
 const App = ({placeCards, placeReviews}) => {
   const [activeItem, setActiveItem] = useState(null);
@@ -16,6 +17,7 @@ const App = ({placeCards, placeReviews}) => {
     <Switch>
       <Route path="/" exact>
         <MainPage
+          citiesList={CITIES_LIST}
           placeCards={placeCards}
           onMouseEnterHandler={onMouseEnterHandler}
           onMouseLeaveHandler={onMouseLeaveHandler}
