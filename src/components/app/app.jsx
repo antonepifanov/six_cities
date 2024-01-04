@@ -24,7 +24,10 @@ const App = () => {
         <SignIn/>
       </Route>
       <Route path="/favorites" exact>
-        <Favorites/>
+        <Favorites
+          onMouseEnterHandler={onMouseEnterHandler}
+          onMouseLeaveHandler={onMouseLeaveHandler}
+        />
       </Route>
       <Route path="/offer/:id" exact>
         <Room

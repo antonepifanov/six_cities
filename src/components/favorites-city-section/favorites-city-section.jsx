@@ -1,8 +1,8 @@
 import React from 'react';
-import {OFFERS_TYPES, STRING_TYPES} from '../../prop-types/prop-types';
-import FavoritesCard from '../favorites-card/favorites-card';
+import {OFFERS_TYPES, STRING_TYPES, HANDLER_TYPES} from '../../prop-types/prop-types';
+import PlaceCard from '../place-card/place-card';
 
-const FavoritesCitySection = ({city, favoriteCards}) => (
+const FavoritesCitySection = ({city, favoriteCards, onMouseEnterHandler, onMouseLeaveHandler}) => (
   <li className="favorites__locations-items">
     <div className="favorites__locations locations locations--current">
       <div className="locations__item">
@@ -14,9 +14,12 @@ const FavoritesCitySection = ({city, favoriteCards}) => (
     <div className="favorites__places">
       {favoriteCards.map((card) => (
         card.city.name === city
-          ? <FavoritesCard
+          ? <PlaceCard
+            className="favorites"
             key={card.id}
             card={card}
+            onMouseEnterHandler={onMouseEnterHandler}
+            onMouseLeaveHandler={onMouseLeaveHandler}
           />
           : ``
       ))}
@@ -27,6 +30,8 @@ const FavoritesCitySection = ({city, favoriteCards}) => (
 FavoritesCitySection.propTypes = {
   city: STRING_TYPES,
   favoriteCards: OFFERS_TYPES,
+  onMouseEnterHandler: HANDLER_TYPES,
+  onMouseLeaveHandler: HANDLER_TYPES,
 };
 
 export default FavoritesCitySection;

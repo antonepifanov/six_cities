@@ -1,10 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {OFFERS_TYPES} from '../../prop-types/prop-types';
+import {OFFERS_TYPES, HANDLER_TYPES} from '../../prop-types/prop-types';
 import FavoritesCitySection from '../favorites-city-section/favorites-city-section';
 
-const Favorites = ({placeCards}) => {
+const Favorites = ({placeCards, onMouseEnterHandler, onMouseLeaveHandler}) => {
   const favoriteCards = placeCards.filter((card) => card.isFavorite);
   const citiesList = favoriteCards.reduce((uniqCitiesList, card) => {
     uniqCitiesList.push(card.city.name);
@@ -46,6 +46,8 @@ const Favorites = ({placeCards}) => {
                 key={city}
                 city={city}
                 favoriteCards={favoriteCards}
+                onMouseEnterHandler={onMouseEnterHandler}
+                onMouseLeaveHandler={onMouseLeaveHandler}
               />)
             }
           </ul>
@@ -63,6 +65,8 @@ const Favorites = ({placeCards}) => {
 
 Favorites.propTypes = {
   placeCards: OFFERS_TYPES,
+  onMouseEnterHandler: HANDLER_TYPES,
+  onMouseLeaveHandler: HANDLER_TYPES,
 };
 
 const mapStateToProps = (state) => ({
