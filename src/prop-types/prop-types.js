@@ -27,6 +27,8 @@ export const HANDLER_TYPES = PropTypes.func.isRequired;
 
 export const STRING_TYPES = PropTypes.string;
 
+export const CITIES_TYPES = PropTypes.arrayOf(STRING_TYPES);
+
 export const REVIEW_TYPES = PropTypes.shape({
   comment: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,

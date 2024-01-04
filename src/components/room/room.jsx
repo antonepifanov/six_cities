@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {Link, useParams} from 'react-router-dom';
+import {connect} from 'react-redux';
 import CommentForm from '../comment-form/comment-form';
 import ReviewsList from '../reviews-list/reviews-list';
 import Map from '../map/map';
@@ -10,9 +11,9 @@ import {STAR_WIDTH} from '../../constants/constants';
 const Room = ({placeCards, placeReviews, onMouseEnterHandler, onMouseLeaveHandler, activeItem}) => {
   const id = Number(useParams().id);
   const room = placeCards.find((card) => card.id === id);
-  const {bedrooms, images, isFavorite, isPremium, maxAdults, price, rating, title, type, goods, host, description} = room;
+  const {bedrooms, city, images, isFavorite, isPremium, maxAdults, price, rating, title, type, goods, host, description} = room;
   const sentences = description.split(`. `);
-  const nearPlaces = placeCards.filter((card) => card.id !== room.id).slice(0, 3);
+  const nearPlaces = placeCards.filter((offer) => offer.city.name === city.name).filter((card) => card.id !== room.id).slice(0, 3);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -135,15 +136,15 @@ const Room = ({placeCards, placeReviews, onMouseEnterHandler, onMouseLeaveHandle
             </section>
           </div>
         </div>
-        <section className="property__map map">
+        {nearPlaces.length > 0 && <section className="property__map map">
           <Map
             placeCards={nearPlaces}
             activeItem={activeItem}
             room={room}
           />
-        </section>
+        </section>}
       </section>
-      <div className="container">
+      {nearPlaces.length > 0 && <div className="container">
         <section className="near-places places">
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <CardsList
@@ -153,7 +154,7 @@ const Room = ({placeCards, placeReviews, onMouseEnterHandler, onMouseLeaveHandle
             onMouseLeaveHandler={onMouseLeaveHandler}
           />
         </section>
-      </div>
+      </div>}
     </main>
   </div>;
 };
@@ -166,4 +167,11 @@ Room.propTypes = {
   activeItem: CARD_TYPES,
 };
 
-export default Room;
+const mapStateToProps = (state) => ({
+  cities: state.cities,
+  placeCards: state.offers,
+  placeReviews: state.reviews
+});
+
+export {Room};
+export default connect(mapStateToProps)(Room);

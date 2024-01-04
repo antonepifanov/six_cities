@@ -1,9 +1,13 @@
+import {CITIES_LIST} from '../constants/constants';
 import offers from '../mocks/offers';
+import reviews from '../mocks/reviews';
 import {ActionType} from './action';
 
 const initialState = {
-  selectedCity: `Amsterdam`,
-  offers: offers.filter((offer) => offer.city.name === `Amsterdam`),
+  cities: CITIES_LIST,
+  selectedCity: CITIES_LIST[0],
+  offers,
+  reviews,
 };
 
 const reducer = (state = initialState, action) => {
@@ -11,8 +15,7 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_CITY:
       return {
         ...state,
-        selectedCity: action.payload,
-        offers: offers.filter((offer) => offer.city.name === action.payload)
+        selectedCity: action.payload
       };
 
     case ActionType.CHANGE_OFFERS:
@@ -24,6 +27,5 @@ const reducer = (state = initialState, action) => {
 
   return state;
 };
-
 
 export {reducer};

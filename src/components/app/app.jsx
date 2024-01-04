@@ -1,14 +1,12 @@
 import React, {useState} from 'react';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
-import {OFFERS_TYPES, REVIEWS_TYPES} from '../../prop-types/prop-types';
 import MainPage from '../main-page/main-page';
 import Favorites from '../favorites/favorites';
 import Room from '../room/room';
 import SignIn from '../sign-in/sign-in';
 import NotFoundPage from '../not-found-page/not-found-page';
-import {CITIES_LIST} from '../../constants/constants';
 
-const App = ({placeCards, placeReviews}) => {
+const App = () => {
   const [activeItem, setActiveItem] = useState(null);
   const onMouseEnterHandler = (item) => setActiveItem(item);
   const onMouseLeaveHandler = () => setActiveItem(null);
@@ -17,8 +15,6 @@ const App = ({placeCards, placeReviews}) => {
     <Switch>
       <Route path="/" exact>
         <MainPage
-          citiesList={CITIES_LIST}
-          placeCards={placeCards}
           onMouseEnterHandler={onMouseEnterHandler}
           onMouseLeaveHandler={onMouseLeaveHandler}
           activeItem={activeItem}
@@ -28,14 +24,10 @@ const App = ({placeCards, placeReviews}) => {
         <SignIn/>
       </Route>
       <Route path="/favorites" exact>
-        <Favorites
-          placeCards={placeCards}
-        />
+        <Favorites/>
       </Route>
       <Route path="/offer/:id" exact>
         <Room
-          placeCards={placeCards}
-          placeReviews={placeReviews}
           onMouseEnterHandler={onMouseEnterHandler}
           onMouseLeaveHandler={onMouseLeaveHandler}
           activeItem={activeItem}
@@ -46,11 +38,6 @@ const App = ({placeCards, placeReviews}) => {
       </Route>
     </Switch>
   </BrowserRouter>;
-};
-
-App.propTypes = {
-  placeCards: OFFERS_TYPES,
-  placeReviews: REVIEWS_TYPES,
 };
 
 export default App;

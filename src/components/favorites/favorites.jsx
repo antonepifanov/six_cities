@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 import {OFFERS_TYPES} from '../../prop-types/prop-types';
 import FavoritesCitySection from '../favorites-city-section/favorites-city-section';
 
@@ -40,9 +41,9 @@ const Favorites = ({placeCards}) => {
         <section className="favorites">
           <h1 className="favorites__title">Saved listing</h1>
           <ul className="favorites__list">
-            {cities.map((city, index) =>
+            {cities.map((city) =>
               <FavoritesCitySection
-                key={city + index}
+                key={city}
                 city={city}
                 favoriteCards={favoriteCards}
               />)
@@ -64,4 +65,9 @@ Favorites.propTypes = {
   placeCards: OFFERS_TYPES,
 };
 
-export default Favorites;
+const mapStateToProps = (state) => ({
+  placeCards: state.offers,
+});
+
+export {Favorites};
+export default connect(mapStateToProps)(Favorites);
