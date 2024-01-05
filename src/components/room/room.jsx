@@ -5,10 +5,10 @@ import CommentForm from '../comment-form/comment-form';
 import ReviewsList from '../reviews-list/reviews-list';
 import Map from '../map/map';
 import CardsList from '../cards-list/cards-list';
-import {OFFERS_TYPES, REVIEWS_TYPES, HANDLER_TYPES, CARD_TYPES} from '../../prop-types/prop-types';
+import {OFFERS_TYPES, REVIEWS_TYPES} from '../../prop-types/prop-types';
 import {STAR_WIDTH} from '../../constants/constants';
 
-const Room = ({placeCards, placeReviews, onMouseEnterHandler, onMouseLeaveHandler, activeItem}) => {
+const Room = ({placeCards, placeReviews}) => {
   const id = Number(useParams().id);
   const room = placeCards.find((card) => card.id === id);
   const {bedrooms, city, images, isFavorite, isPremium, maxAdults, price, rating, title, type, goods, host, description} = room;
@@ -129,9 +129,7 @@ const Room = ({placeCards, placeReviews, onMouseEnterHandler, onMouseLeaveHandle
             </div>
             <section className="property__reviews reviews">
               <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{placeReviews.length}</span></h2>
-              <ReviewsList
-                placeReviews={placeReviews}
-              />
+              <ReviewsList placeReviews={placeReviews}/>
               <CommentForm/>
             </section>
           </div>
@@ -139,7 +137,6 @@ const Room = ({placeCards, placeReviews, onMouseEnterHandler, onMouseLeaveHandle
         {nearPlaces.length > 0 && <section className="property__map map">
           <Map
             placeCards={nearPlaces}
-            activeItem={activeItem}
             room={room}
           />
         </section>}
@@ -150,8 +147,6 @@ const Room = ({placeCards, placeReviews, onMouseEnterHandler, onMouseLeaveHandle
           <CardsList
             view="room"
             placeCards={nearPlaces}
-            onMouseEnterHandler={onMouseEnterHandler}
-            onMouseLeaveHandler={onMouseLeaveHandler}
           />
         </section>
       </div>}
@@ -162,9 +157,6 @@ const Room = ({placeCards, placeReviews, onMouseEnterHandler, onMouseLeaveHandle
 Room.propTypes = {
   placeCards: OFFERS_TYPES,
   placeReviews: REVIEWS_TYPES,
-  onMouseEnterHandler: HANDLER_TYPES,
-  onMouseLeaveHandler: HANDLER_TYPES,
-  activeItem: CARD_TYPES,
 };
 
 const mapStateToProps = (state) => ({

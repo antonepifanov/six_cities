@@ -1,16 +1,14 @@
 import React from 'react';
-import {OFFERS_TYPES, HANDLER_TYPES} from '../../prop-types/prop-types';
+import {OFFERS_TYPES} from '../../prop-types/prop-types';
 import PlaceCard from '../place-card/place-card';
 
-const CardsListMain = (props) => (
+const CardsListMain = ({placeCards}) => (
   <div className="cities__places-list places__list tabs__content">
-    {props.placeCards.map((card) =>
+    {placeCards.map((card) =>
       <PlaceCard
         className="cities"
         key={card.id}
         card={card}
-        onMouseEnterHandler={props.onMouseEnterHandler}
-        onMouseLeaveHandler={props.onMouseLeaveHandler}
       />)
     }
   </div>
@@ -18,8 +16,6 @@ const CardsListMain = (props) => (
 
 CardsListMain.propTypes = {
   placeCards: OFFERS_TYPES,
-  onMouseEnterHandler: HANDLER_TYPES,
-  onMouseLeaveHandler: HANDLER_TYPES,
 };
 
 export default CardsListMain;

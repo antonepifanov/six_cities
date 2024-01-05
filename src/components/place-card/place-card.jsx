@@ -1,12 +1,14 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../store/action';
 import {Link} from 'react-router-dom';
 import {CARD_TYPES, HANDLER_TYPES, STRING_TYPES} from '../../prop-types/prop-types';
 import {STAR_WIDTH} from '../../constants/constants';
 
-const PlaceCard = ({view, className, card, onMouseEnterHandler, onMouseLeaveHandler}) => {
+const PlaceCard = ({view, className, card, setActiveMapPin}) => {
   const {id, isFavorite, isPremium, previewImage, price, rating, title, type} = card;
-  const onMouseEnter = () => onMouseEnterHandler(card);
-  const onMouseLeave = () => onMouseLeaveHandler();
+  const onMouseEnter = () => setActiveMapPin(card);
+  const onMouseLeave = () => setActiveMapPin(null);
 
   return (
     <article className={`${className}__place-card place-card`}
@@ -54,10 +56,20 @@ const PlaceCard = ({view, className, card, onMouseEnterHandler, onMouseLeaveHand
 
 PlaceCard.propTypes = {
   card: CARD_TYPES,
-  onMouseEnterHandler: HANDLER_TYPES,
-  onMouseLeaveHandler: HANDLER_TYPES,
+  setActiveMapPin: HANDLER_TYPES,
   className: STRING_TYPES,
   view: STRING_TYPES,
 };
 
-export default PlaceCard;
+const mapStateToProps = (state) => ({
+  ...state
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setActiveMapPin(pin) {
+    dispatch(ActionCreator.setActiveMapPin(pin));
+  },
+});
+
+export {PlaceCard};
+export default connect(mapStateToProps, mapDispatchToProps)(PlaceCard);

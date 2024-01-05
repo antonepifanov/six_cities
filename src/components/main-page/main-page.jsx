@@ -2,13 +2,13 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
 import {Link} from 'react-router-dom';
-import {OFFERS_TYPES, HANDLER_TYPES, CARD_TYPES, STRING_TYPES, CITIES_TYPES} from '../../prop-types/prop-types';
+import {OFFERS_TYPES, HANDLER_TYPES, STRING_TYPES, CITIES_TYPES} from '../../prop-types/prop-types';
 import CardsList from '../cards-list/cards-list';
 import Map from "../map/map";
 import Cities from '../cities/cities';
 import Sorting from '../sorting/sorting';
 
-const MainPage = ({cities, selectedCity, onMouseEnterHandler, onMouseLeaveHandler, activeItem, selectCity, currentCityOffers}) => (
+const MainPage = ({cities, selectedCity, selectCity, currentCityOffers}) => (
   <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -46,16 +46,11 @@ const MainPage = ({cities, selectedCity, onMouseEnterHandler, onMouseLeaveHandle
             <Sorting/>
             <CardsList
               placeCards={currentCityOffers}
-              onMouseEnterHandler={onMouseEnterHandler}
-              onMouseLeaveHandler={onMouseLeaveHandler}
             />
           </section>}
           <div className="cities__right-section">
             {currentCityOffers.length > 0 && <section className="cities__map map">
-              <Map
-                placeCards={currentCityOffers}
-                activeItem={activeItem}
-              />
+              <Map placeCards={currentCityOffers}/>
             </section>}
           </div>
         </div>
@@ -66,9 +61,6 @@ const MainPage = ({cities, selectedCity, onMouseEnterHandler, onMouseLeaveHandle
 
 MainPage.propTypes = {
   currentCityOffers: OFFERS_TYPES,
-  onMouseEnterHandler: HANDLER_TYPES,
-  onMouseLeaveHandler: HANDLER_TYPES,
-  activeItem: CARD_TYPES,
   selectedCity: STRING_TYPES,
   selectCity: HANDLER_TYPES,
   cities: CITIES_TYPES

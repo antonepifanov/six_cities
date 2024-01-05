@@ -1,9 +1,10 @@
 import React, {useEffect, useRef} from 'react';
 import {OFFERS_TYPES, CARD_TYPES} from '../../prop-types/prop-types';
+import {connect} from 'react-redux';
 import leaflet from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-const Map = ({placeCards, activeItem, room}) => {
+const Map = ({placeCards, activeMapPin, room}) => {
   const mapRef = useRef(null);
   const [firstItem = {}] = placeCards;
 
@@ -33,7 +34,7 @@ const Map = ({placeCards, activeItem, room}) => {
     const markersGroup = leaflet.layerGroup().addTo(mapRef.current);
 
     placeCards.forEach((item) => {
-      const isActive = activeItem ? item.id === activeItem.id : false;
+      const isActive = activeMapPin ? item.id === activeMapPin.id : false;
       const customIcon = leaflet.icon({
         iconUrl: isActive ? `img/pin-active.svg` : `img/pin.svg`,
         iconSize: [27, 39]
@@ -53,7 +54,7 @@ const Map = ({placeCards, activeItem, room}) => {
     return () => {
       markersGroup.clearLayers();
     };
-  }, [activeItem]);
+  }, [activeMapPin, placeCards]);
 
   return (
     <div id="map" style={{height: `100%`}} ref={mapRef}/>
@@ -62,8 +63,13 @@ const Map = ({placeCards, activeItem, room}) => {
 
 Map.propTypes = {
   placeCards: OFFERS_TYPES,
-  activeItem: CARD_TYPES,
+  activeMapPin: CARD_TYPES,
   room: CARD_TYPES,
 };
 
-export default Map;
+const mapStateToProps = (state) => ({
+  activeMapPin: state.activeMapPin,
+});
+
+export {Map};
+export default connect(mapStateToProps)(Map);

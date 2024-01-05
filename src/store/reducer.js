@@ -11,6 +11,7 @@ const initialState = {
   currentCityOffers: getCurrentCityOffers(offers, CITIES_LIST[0]),
   activeSorting: SORTING_TYPES.POPULAR,
   reviews,
+  activeMapPin: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -29,6 +30,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         activeSorting: action.payload,
         currentCityOffers: getCurrentCityOffersBySorting(getCurrentCityOffers(offers, state.selectedCity), action.payload),
+      };
+    }
+
+    case ActionType.SET_ACTIVE_MAP_PIN: {
+      return {
+        ...state,
+        activeMapPin: action.payload,
       };
     }
   }

@@ -1,17 +1,15 @@
 import React from 'react';
-import {OFFERS_TYPES, HANDLER_TYPES, STRING_TYPES} from '../../prop-types/prop-types';
+import {OFFERS_TYPES, STRING_TYPES} from '../../prop-types/prop-types';
 import PlaceCard from '../place-card/place-card';
 
-const CardsListRoom = (props) => (
+const CardsListRoom = ({placeCards, view}) => (
   <div className="near-places__list places__list">
-    {props.placeCards.map((card) =>
+    {placeCards.map((card) =>
       <PlaceCard
-        view={props.view}
+        view={view}
         className="near-places"
         key={card.id}
         card={card}
-        onMouseEnterHandler={props.onMouseEnterHandler}
-        onMouseLeaveHandler={props.onMouseLeaveHandler}
       />)
     }
   </div>
@@ -19,8 +17,6 @@ const CardsListRoom = (props) => (
 
 CardsListRoom.propTypes = {
   placeCards: OFFERS_TYPES,
-  onMouseEnterHandler: HANDLER_TYPES,
-  onMouseLeaveHandler: HANDLER_TYPES,
   view: STRING_TYPES,
 };
 
