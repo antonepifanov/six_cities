@@ -2,7 +2,7 @@ import {CITIES_LIST, SORTING_TYPES} from '../constants/constants';
 import offers from '../mocks/offers';
 import reviews from '../mocks/reviews';
 import {ActionType} from './action';
-import {getCurrentCityOffers} from './selectors';
+import {getCurrentCityOffers, getCurrentCityOffersBySorting} from './selectors';
 
 const initialState = {
   cities: CITIES_LIST,
@@ -28,6 +28,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         activeSorting: action.payload,
+        currentCityOffers: getCurrentCityOffersBySorting(getCurrentCityOffers(offers, state.selectedCity), action.payload),
       };
     }
   }
