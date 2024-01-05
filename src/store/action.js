@@ -9,7 +9,7 @@ export const ActionCreator = {
     payload: city,
   }),
   changeSorting: (sorting) => ({
-    type: ActionType.CHANGE_CITY,
+    type: ActionType.CHANGE_SORTING,
     payload: sorting,
   }),
 };
