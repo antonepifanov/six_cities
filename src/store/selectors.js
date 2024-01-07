@@ -21,3 +21,32 @@ export const getCurrentCityOffersBySorting = (currentCityOffers, sorting) => {
     }
   }
 };
+
+export const adaptOffersToClient = (offers) => {
+  return offers.map((offer) => {
+    const {host} = offer;
+    const adaptedOffer = Object.assign(
+        {},
+        offer,
+        {
+          host: {
+            avatarUrl: host.avatar_url,
+            id: host.id,
+            isPro: host.is_pro,
+            name: host.name
+          },
+          isFavorite: offer.is_favorite,
+          isPremium: offer.is_premium,
+          maxAdults: offer.max_adults,
+          previewImage: offer.preview_image,
+        },
+    );
+
+    delete adaptedOffer.is_favorite;
+    delete adaptedOffer.is_premium;
+    delete adaptedOffer.max_adults;
+    delete adaptedOffer.preview_image;
+
+    return adaptedOffer;
+  });
+};

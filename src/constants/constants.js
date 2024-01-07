@@ -23,3 +23,8 @@ export const SORTING_TYPES = {
   PRICE_HIGH_TO_LOW: `Price: high to low`,
   TOP_RATED_FIRST: `Top rated first`,
 };
+
+export const AUTHORIZATION_STATUS = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};

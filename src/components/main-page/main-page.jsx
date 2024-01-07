@@ -2,13 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
 import {Link} from 'react-router-dom';
-import {OFFERS_TYPES, HANDLER_TYPES, STRING_TYPES, CITIES_TYPES} from '../../prop-types/prop-types';
-import CardsList from '../cards-list/cards-list';
-import Map from "../map/map";
+import {HANDLER_TYPES, STRING_TYPES, CITIES_TYPES} from '../../prop-types/prop-types';
 import Cities from '../cities/cities';
-import Sorting from '../sorting/sorting';
+import CitiesContent from '../cities-content/cities-content';
 
-const MainPage = ({cities, selectedCity, selectCity, currentCityOffers}) => (
+const MainPage = ({cities, selectedCity, selectCity}) => (
   <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -40,19 +38,7 @@ const MainPage = ({cities, selectedCity, selectCity, currentCityOffers}) => (
       />
       <div className="cities">
         <div className="cities__places-container container">
-          {currentCityOffers.length > 0 && <section className="cities__places places">
-            <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{currentCityOffers.length} {currentCityOffers.length === 1 ? `place` : `places`} to stay in {selectedCity}</b>
-            <Sorting/>
-            <CardsList
-              placeCards={currentCityOffers}
-            />
-          </section>}
-          <div className="cities__right-section">
-            {currentCityOffers.length > 0 && <section className="cities__map map">
-              <Map placeCards={currentCityOffers}/>
-            </section>}
-          </div>
+          <CitiesContent/>
         </div>
       </div>
     </main>
@@ -60,7 +46,6 @@ const MainPage = ({cities, selectedCity, selectCity, currentCityOffers}) => (
 );
 
 MainPage.propTypes = {
-  currentCityOffers: OFFERS_TYPES,
   selectedCity: STRING_TYPES,
   selectCity: HANDLER_TYPES,
   cities: CITIES_TYPES
@@ -69,7 +54,6 @@ MainPage.propTypes = {
 const mapStateToProps = (state) => ({
   cities: state.cities,
   selectedCity: state.selectedCity,
-  currentCityOffers: state.currentCityOffers
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -28,7 +28,7 @@ const Map = ({placeCards, activeMapPin, room}) => {
     return () => {
       mapRef.current.remove();
     };
-  }, [room]);
+  }, [placeCards, room]);
 
   useEffect(() => {
     const markersGroup = leaflet.layerGroup().addTo(mapRef.current);
