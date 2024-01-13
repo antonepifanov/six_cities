@@ -61,10 +61,6 @@ PlaceCard.propTypes = {
   view: STRING_TYPES,
 };
 
-const mapStateToProps = (state) => ({
-  ...state
-});
-
 const mapDispatchToProps = (dispatch) => ({
   setActiveMapPin(pin) {
     dispatch(ActionCreator.setActiveMapPin(pin));
@@ -72,4 +68,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {PlaceCard};
-export default connect(mapStateToProps, mapDispatchToProps)(PlaceCard);
+export default connect(null, mapDispatchToProps)(PlaceCard);
