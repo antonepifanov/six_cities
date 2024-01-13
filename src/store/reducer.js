@@ -13,6 +13,7 @@ const initialState = {
   activeMapPin: null,
   authorizationStatus: AUTHORIZATION_STATUS.NO_AUTH,
   isDataLoaded: false,
+  userName: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -54,6 +55,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         authorizationStatus: action.payload,
+      };
+    }
+
+    case ActionType.SET_USER_NAME: {
+      return {
+        ...state,
+        userName: action.payload,
       };
     }
   }

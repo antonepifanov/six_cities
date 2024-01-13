@@ -1,6 +1,7 @@
 import axios from "axios";
+import {BACKEND_URL} from "../constants/constants";
 
-const BACKEND_URL = `https://6.react.pages.academy/six-cities`;
+
 const REQUEST_TIMEOUT = 5000;
 
 const HttpCode = {
@@ -21,10 +22,6 @@ export const createAPI = (onUnauthorized) => {
 
     if (response.status === HttpCode.UNAUTHORIZED) {
       onUnauthorized();
-
-      // Бросаем ошибку, потому что нам важно прервать цепочку промисов после запроса авторизации.
-      // Запрос авторизации — это особый случай и важно дать понять приложению, что запрос был неудачным.
-      throw err;
     }
 
     throw err;

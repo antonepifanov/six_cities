@@ -19,8 +19,7 @@ const App = () => (
       <PrivateRoute exact
         path="/favorites"
         render={() => <Favorites/>}
-      >
-      </PrivateRoute>
+      />
       <Route path="/offer/:id" exact>
         <Room/>
       </Route>

@@ -28,3 +28,5 @@ export const AUTHORIZATION_STATUS = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
 };
+
+export const BACKEND_URL = `https://6.react.pages.academy/six-cities`;
