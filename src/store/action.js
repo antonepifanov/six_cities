@@ -4,7 +4,8 @@ export const ActionType = {
   SET_ACTIVE_MAP_PIN: `map-pin/set-active`,
   LOAD_OFFERS: `data/loadOffers`,
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
-  SET_USER_NAME: `user/setName`
+  SET_USER_NAME: `user/setName`,
+  REDIRECT_TO_ROUTE: `user/redirectToRoute`,
 };
 
 export const ActionCreator = {
@@ -31,5 +32,9 @@ export const ActionCreator = {
   setUserName: (name) => ({
     type: ActionType.SET_USER_NAME,
     payload: name,
+  }),
+  redirectToRoute: (url) => ({
+    type: ActionType.REDIRECT_TO_ROUTE,
+    payload: url,
   }),
 };

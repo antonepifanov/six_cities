@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import {Redirect, useHistory} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import {connect} from "react-redux";
 import {login} from "../../store/api-actions";
 import Header from '../header/header';
@@ -13,8 +13,6 @@ const SignIn = ({authorizationStatus, onSubmit}) => {
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  const history = useHistory();
-
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
@@ -22,9 +20,6 @@ const SignIn = ({authorizationStatus, onSubmit}) => {
       email: emailRef.current.value,
       password: passwordRef.current.value,
     });
-    if (authorizationStatus === AUTHORIZATION_STATUS.AUTH) {
-      history.push(`/`);
-    }
   };
   return <div className="page page--gray page--login">
     <Header/>

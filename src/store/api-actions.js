@@ -25,5 +25,5 @@ export const login = ({email, password}) => (dispatch, _getState, api) => (
       return data;
     })
     .then((data) => dispatch(ActionCreator.setUserName(data.name)))
-    .catch(() => {})
+    .then(() => dispatch(ActionCreator.redirectToRoute(`/`)))
 );
