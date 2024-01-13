@@ -5,6 +5,7 @@ import Favorites from '../favorites/favorites';
 import Room from '../room/room';
 import SignIn from '../sign-in/sign-in';
 import NotFoundPage from '../not-found-page/not-found-page';
+import PrivateRoute from '../private-route/private-route';
 
 const App = () => (
   <BrowserRouter>
@@ -15,9 +16,11 @@ const App = () => (
       <Route path="/login" exact>
         <SignIn/>
       </Route>
-      <Route path="/favorites" exact>
-        <Favorites/>
-      </Route>
+      <PrivateRoute exact
+        path="/favorites"
+        render={() => <Favorites/>}
+      >
+      </PrivateRoute>
       <Route path="/offer/:id" exact>
         <Room/>
       </Route>
