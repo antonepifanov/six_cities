@@ -56,9 +56,7 @@ const Map = ({placeCards, activeMapPin, room}) => {
     };
   }, [activeMapPin, placeCards]);
 
-  return (
-    <div id="map" style={{height: `100%`}} ref={mapRef}/>
-  );
+  return <div id="map" style={{height: `100%`}} ref={mapRef}/>;
 };
 
 Map.propTypes = {
