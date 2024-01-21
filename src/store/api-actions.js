@@ -26,6 +26,7 @@ export const login = ({email, password}) => (dispatch, _getState, api) => (
     })
     .then((data) => dispatch(ActionCreator.setUserName(data.name)))
     .then(() => dispatch(ActionCreator.redirectToRoute(`/`)))
+    .finally(() => dispatch(ActionCreator.isLoadData(false)))
 );
 
 export const fetchOffer = (roomId) => (dispatch, _getState, api) => (
