@@ -5,20 +5,39 @@ import CommentForm from '../comment-form/comment-form';
 import ReviewsList from '../reviews-list/reviews-list';
 import Map from '../map/map';
 import CardsList from '../cards-list/cards-list';
-import {OFFERS_TYPES, REVIEWS_TYPES} from '../../prop-types/prop-types';
+import {BOOLEAN_TYPES, HANDLER_TYPES, OBJECT_TYPES, OFFERS_TYPES, REVIEWS_TYPES} from '../../prop-types/prop-types';
 import {STAR_WIDTH} from '../../constants/constants';
 import Header from '../header/header';
+import {fetchOffer} from '../../store/api-actions';
+import LoadingScreen from '../loading-screen/loading-screen';
+import NotFoundPage from '../not-found-page/not-found-page';
 
-const Room = ({placeCards, placeReviews}) => {
+const Room = ({placeCards, placeReviews, room, isDataLoaded, onLoadData}) => {
   const id = Number(useParams().id);
-  const room = placeCards.find((card) => card.id === id);
-  const {bedrooms, city, images, isFavorite, isPremium, maxAdults, price, rating, title, type, goods, host, description} = room;
-  const sentences = description.split(`. `);
-  const nearPlaces = placeCards.filter((offer) => offer.city.name === city.name).filter((card) => card.id !== room.id).slice(0, 3);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [id]);
+  }, [room]);
+
+  useEffect(() => {
+    if (!isDataLoaded) {
+      onLoadData(id);
+    }
+  }, [isDataLoaded]);
+
+  if (!isDataLoaded) {
+    return (
+      <LoadingScreen/>
+    );
+  }
+
+  if (!room) {
+    return <NotFoundPage/>;
+  }
+
+  const {bedrooms, city, images, isFavorite, isPremium, maxAdults, price, rating, title, type, goods, host, description} = room;
+  const sentences = description.split(`. `);
+  const nearPlaces = placeCards.filter((offer) => offer.city.name === city.name).filter((card) => card.id !== room.id).slice(0, 3);
 
   return <div className="page">
     <Header/>
@@ -137,13 +156,24 @@ const Room = ({placeCards, placeReviews}) => {
 Room.propTypes = {
   placeCards: OFFERS_TYPES,
   placeReviews: REVIEWS_TYPES,
+  room: OBJECT_TYPES,
+  isDataLoaded: BOOLEAN_TYPES,
+  onLoadData: HANDLER_TYPES,
 };
 
 const mapStateToProps = (state) => ({
   cities: state.cities,
   placeCards: state.offers,
-  placeReviews: state.reviews
+  placeReviews: state.reviews,
+  room: state.room,
+  isDataLoaded: state.isDataLoaded,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoadData(id) {
+    dispatch(fetchOffer(id));
+  },
 });
 
 export {Room};
-export default connect(mapStateToProps)(Room);
+export default connect(mapStateToProps, mapDispatchToProps)(Room);

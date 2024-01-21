@@ -1,6 +1,6 @@
 import {ActionCreator} from "./action";
 import {AUTHORIZATION_STATUS} from "../constants/constants";
-import {adaptOffersToClient} from "./selectors";
+import {adaptOfferToClient, adaptOffersToClient} from "./selectors";
 
 export const fetchOffers = () => (dispatch, _getState, api) => (
   api.get(`/hotels`)
@@ -26,4 +26,11 @@ export const login = ({email, password}) => (dispatch, _getState, api) => (
     })
     .then((data) => dispatch(ActionCreator.setUserName(data.name)))
     .then(() => dispatch(ActionCreator.redirectToRoute(`/`)))
+);
+
+export const fetchOffer = (roomId) => (dispatch, _getState, api) => (
+  api.get(`/hotels/${roomId}`)
+    .then(({data}) => adaptOfferToClient(data))
+    .then((data) => dispatch(ActionCreator.loadRoom(data)))
+    .finally(() => dispatch(ActionCreator.isLoadData(true)))
 );

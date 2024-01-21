@@ -14,6 +14,7 @@ const initialState = {
   authorizationStatus: AUTHORIZATION_STATUS.NO_AUTH,
   isDataLoaded: false,
   userName: null,
+  room: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -62,6 +63,20 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         userName: action.payload,
+      };
+    }
+
+    case ActionType.IS_LOAD_DATA: {
+      return {
+        ...state,
+        isDataLoaded: action.payload,
+      };
+    }
+
+    case ActionType.LOAD_ROOM: {
+      return {
+        ...state,
+        room: action.payload,
       };
     }
   }

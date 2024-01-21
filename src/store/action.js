@@ -6,6 +6,8 @@ export const ActionType = {
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
   SET_USER_NAME: `user/setName`,
   REDIRECT_TO_ROUTE: `user/redirectToRoute`,
+  LOAD_ROOM: `data/loadRoom`,
+  IS_LOAD_DATA: `data/loading`
 };
 
 export const ActionCreator = {
@@ -36,5 +38,13 @@ export const ActionCreator = {
   redirectToRoute: (url) => ({
     type: ActionType.REDIRECT_TO_ROUTE,
     payload: url,
+  }),
+  isLoadData: (status) => ({
+    type: ActionType.IS_LOAD_DATA,
+    payload: status,
+  }),
+  loadRoom: (room) => ({
+    type: ActionType.LOAD_ROOM,
+    payload: room,
   }),
 };

@@ -1,7 +1,6 @@
 import axios from "axios";
 import {BACKEND_URL} from "../constants/constants";
 
-
 const REQUEST_TIMEOUT = 5000;
 
 const HttpCode = {

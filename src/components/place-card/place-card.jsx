@@ -5,10 +5,11 @@ import {Link} from 'react-router-dom';
 import {CARD_TYPES, HANDLER_TYPES, STRING_TYPES} from '../../prop-types/prop-types';
 import {STAR_WIDTH} from '../../constants/constants';
 
-const PlaceCard = ({view, className, card, setActiveMapPin}) => {
+const PlaceCard = ({view, className, card, setActiveMapPin, onLinkClick}) => {
   const {id, isFavorite, isPremium, previewImage, price, rating, title, type} = card;
   const onMouseEnter = () => setActiveMapPin(card);
   const onMouseLeave = () => setActiveMapPin(null);
+  const handleClick = () => onLinkClick(id);
 
   return (
     <article className={`${className}__place-card place-card`}
@@ -20,7 +21,9 @@ const PlaceCard = ({view, className, card, setActiveMapPin}) => {
         </div>
       )}
       <div className={`${className}__image-wrapper place-card__image-wrapper`}>
-        <Link to={`/offer/${id}`}>
+        <Link to={`/offer/${id}`}
+          onClick={handleClick}
+        >
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image"/>
         </Link>
       </div>
@@ -57,6 +60,7 @@ const PlaceCard = ({view, className, card, setActiveMapPin}) => {
 PlaceCard.propTypes = {
   card: CARD_TYPES,
   setActiveMapPin: HANDLER_TYPES,
+  onLinkClick: HANDLER_TYPES,
   className: STRING_TYPES,
   view: STRING_TYPES,
 };
@@ -65,6 +69,9 @@ const mapDispatchToProps = (dispatch) => ({
   setActiveMapPin(pin) {
     dispatch(ActionCreator.setActiveMapPin(pin));
   },
+  onLinkClick() {
+    dispatch(ActionCreator.isLoadData(false));
+  }
 });
 
 export {PlaceCard};

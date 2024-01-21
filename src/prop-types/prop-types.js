@@ -27,6 +27,8 @@ export const HANDLER_TYPES = PropTypes.func.isRequired;
 
 export const STRING_TYPES = PropTypes.string;
 
+export const OBJECT_TYPES = PropTypes.object;
+
 export const CITIES_TYPES = PropTypes.arrayOf(STRING_TYPES);
 
 export const BOOLEAN_TYPES = PropTypes.bool.isRequired;
