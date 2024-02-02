@@ -29,4 +29,4 @@ export const AUTHORIZATION_STATUS = {
   NO_AUTH: `NO_AUTH`,
 };
 
-export const BACKEND_URL = `https://6.react.pages.academy/six-cities`;
+export const BACKEND_URL = `https://6.react.htmlacademy.pro/six-cities`;
