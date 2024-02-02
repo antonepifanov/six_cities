@@ -5,14 +5,14 @@ import CommentForm from '../comment-form/comment-form';
 import ReviewsList from '../reviews-list/reviews-list';
 import Map from '../map/map';
 import CardsList from '../cards-list/cards-list';
-import {BOOLEAN_TYPES, HANDLER_TYPES, OBJECT_TYPES, OFFERS_TYPES, REVIEWS_TYPES} from '../../prop-types/prop-types';
-import {STAR_WIDTH} from '../../constants/constants';
+import {BOOLEAN_TYPES, HANDLER_TYPES, OBJECT_TYPES, OFFERS_TYPES, REVIEWS_TYPES, STRING_TYPES} from '../../prop-types/prop-types';
+import {AUTHORIZATION_STATUS, STAR_WIDTH} from '../../constants/constants';
 import Header from '../header/header';
 import {fetchOffer} from '../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
 import NotFoundPage from '../not-found-page/not-found-page';
 
-const Room = ({placeCards, placeReviews, room, isDataLoaded, onLoadData}) => {
+const Room = ({authorizationStatus, placeCards, placeReviews, room, isDataLoaded, onLoadData}) => {
   const id = Number(useParams().id);
 
   useEffect(() => {
@@ -129,7 +129,7 @@ const Room = ({placeCards, placeReviews, room, isDataLoaded, onLoadData}) => {
             <section className="property__reviews reviews">
               <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{placeReviews.length}</span></h2>
               <ReviewsList placeReviews={placeReviews}/>
-              <CommentForm/>
+              {authorizationStatus === AUTHORIZATION_STATUS.AUTH && <CommentForm/>}
             </section>
           </div>
         </div>
@@ -159,6 +159,7 @@ Room.propTypes = {
   room: OBJECT_TYPES,
   isDataLoaded: BOOLEAN_TYPES,
   onLoadData: HANDLER_TYPES,
+  authorizationStatus: STRING_TYPES,
 };
 
 const mapStateToProps = (state) => ({
@@ -167,6 +168,7 @@ const mapStateToProps = (state) => ({
   placeReviews: state.reviews,
   room: state.room,
   isDataLoaded: state.isDataLoaded,
+  authorizationStatus: state.authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch) => ({
