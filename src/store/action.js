@@ -7,7 +7,8 @@ export const ActionType = {
   SET_USER_NAME: `user/setName`,
   REDIRECT_TO_ROUTE: `user/redirectToRoute`,
   LOAD_ROOM: `data/loadRoom`,
-  IS_LOAD_DATA: `data/loading`
+  IS_LOAD_DATA: `data/loading`,
+  CHANGE_FETCH_STATUS: `data/changeFetchStatus`
 };
 
 export const ActionCreator = {
@@ -46,5 +47,9 @@ export const ActionCreator = {
   loadRoom: (room) => ({
     type: ActionType.LOAD_ROOM,
     payload: room,
+  }),
+  changeFetchStatus: (fetchStatus) => ({
+    type: ActionType.CHANGE_FETCH_STATUS,
+    payload: fetchStatus,
   }),
 };

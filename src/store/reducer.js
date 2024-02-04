@@ -1,4 +1,4 @@
-import {CITIES_LIST, SORTING_TYPES, AUTHORIZATION_STATUS} from '../constants/constants';
+import {CITIES_LIST, SORTING_TYPES, AUTHORIZATION_STATUS, FETCH_STATUS} from '../constants/constants';
 import reviews from '../mocks/reviews';
 import {ActionType} from './action';
 import {getCurrentCityOffers, getCurrentCityOffersBySorting} from './selectors';
@@ -15,6 +15,7 @@ const initialState = {
   isDataLoaded: false,
   userName: null,
   room: null,
+  fetchStatus: FETCH_STATUS.PENDING,
 };
 
 const reducer = (state = initialState, action) => {
@@ -77,6 +78,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         room: action.payload,
+      };
+    }
+
+    case ActionType.CHANGE_FETCH_STATUS: {
+      return {
+        ...state,
+        fetchStatus: action.payload,
       };
     }
   }

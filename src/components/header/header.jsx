@@ -43,7 +43,6 @@ const mapStateToProps = (state) => ({
   placeCards: state.offers,
   placeReviews: state.reviews,
   room: state.room,
-  isDataLoaded: state.isDataLoaded,
 });
 
 const mapDispatchToProps = (dispatch) => ({

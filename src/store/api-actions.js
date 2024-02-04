@@ -1,5 +1,5 @@
 import {ActionCreator} from "./action";
-import {AUTHORIZATION_STATUS} from "../constants/constants";
+import {AUTHORIZATION_STATUS, FETCH_STATUS, REQUEST_TIMEOUT} from "../constants/constants";
 import {adaptOfferToClient, adaptOffersToClient} from "./selectors";
 
 export const fetchOffers = () => (dispatch, _getState, api) => (
@@ -34,4 +34,11 @@ export const fetchOffer = (roomId) => (dispatch, _getState, api) => (
     .then(({data}) => adaptOfferToClient(data))
     .then((data) => dispatch(ActionCreator.loadRoom(data)))
     .finally(() => dispatch(ActionCreator.isLoadData(true)))
+);
+
+export const postReview = ({rating, comment}, id) => (dispatch, _getState, api) => (
+  api.post(`/comments/${id}`, {rating, comment})
+    .then(() => dispatch(ActionCreator.changeFetchStatus(FETCH_STATUS.DONE)))
+    .catch(() => dispatch(ActionCreator.changeFetchStatus(FETCH_STATUS.ERROR)))
+    .finally(() => setTimeout(() => (dispatch(ActionCreator.changeFetchStatus(FETCH_STATUS.PENDING))), REQUEST_TIMEOUT))
 );
