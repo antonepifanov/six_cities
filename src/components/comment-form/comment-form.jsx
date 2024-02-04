@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {RATING_TITLES} from '../../constants/constants';
 
 const CommentForm = () => {
@@ -6,6 +6,14 @@ const CommentForm = () => {
     rating: null,
     review: ``,
   });
+
+  const [isButtonDisabled, setButtonDisabled] = useState(true);
+
+  useEffect(() =>
+    commentForm.rating && commentForm.review.length > 50
+      ? setButtonDisabled(false)
+      : setButtonDisabled(true)
+  );
 
   const handleFieldChange = (evt) => {
     const {name, value} = evt.target;
@@ -32,7 +40,7 @@ const CommentForm = () => {
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled="true">Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={isButtonDisabled}>Submit</button>
       </div>
     </form>
   );
