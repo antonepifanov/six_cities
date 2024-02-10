@@ -1,21 +1,22 @@
 import {CITIES_LIST, SORTING_TYPES, AUTHORIZATION_STATUS, FETCH_STATUS} from '../constants/constants';
-import reviews from '../mocks/reviews';
 import {ActionType} from './action';
 import {getCurrentCityOffers, getCurrentCityOffersBySorting} from './selectors';
 
 const initialState = {
+  offers: [],
   cities: CITIES_LIST,
   selectedCity: CITIES_LIST[0],
-  offers: [],
+  reviews: [],
   currentCityOffers: [],
   activeSorting: SORTING_TYPES.POPULAR,
-  reviews,
+  comments: [],
   activeMapPin: null,
   authorizationStatus: AUTHORIZATION_STATUS.NO_AUTH,
   isDataLoaded: false,
   userName: null,
   room: null,
   fetchStatus: FETCH_STATUS.PENDING,
+  nearPlaces: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -74,7 +75,7 @@ const reducer = (state = initialState, action) => {
       };
     }
 
-    case ActionType.LOAD_ROOM: {
+    case ActionType.GET_CURRENT_ROOM: {
       return {
         ...state,
         room: action.payload,
@@ -85,6 +86,20 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         fetchStatus: action.payload,
+      };
+    }
+
+    case ActionType.LOAD_REVIEWS: {
+      return {
+        ...state,
+        reviews: action.payload,
+      };
+    }
+
+    case ActionType.GET_NEAR_PLACES: {
+      return {
+        ...state,
+        nearPlaces: action.payload,
       };
     }
   }

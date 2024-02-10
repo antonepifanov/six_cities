@@ -52,3 +52,25 @@ export const adaptOfferToClient = (offer) => {
 export const adaptOffersToClient = (offers) => {
   return offers.map((offer) => adaptOfferToClient(offer));
 };
+
+export const adaptReviewToClient = (review) => {
+  const {user} = review;
+  const adaptedReview = Object.assign(
+      {},
+      review,
+      {
+        user: {
+          avatarUrl: user.avatar_url,
+          id: user.id,
+          isPro: user.is_pro,
+          name: user.name
+        },
+      },
+  );
+
+  return adaptedReview;
+};
+
+export const adaptReviewsToClient = (reviews) => {
+  return reviews.map((review) => adaptReviewToClient(review));
+};

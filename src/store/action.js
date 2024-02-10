@@ -6,9 +6,11 @@ export const ActionType = {
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
   SET_USER_NAME: `user/setName`,
   REDIRECT_TO_ROUTE: `user/redirectToRoute`,
-  LOAD_ROOM: `data/loadRoom`,
+  GET_CURRENT_ROOM: `data/getCurrentRoom`,
   IS_LOAD_DATA: `data/loading`,
-  CHANGE_FETCH_STATUS: `data/changeFetchStatus`
+  CHANGE_FETCH_STATUS: `data/changeFetchStatus`,
+  LOAD_REVIEWS: `data/loadReviews`,
+  GET_NEAR_PLACES: `data/getNearPlaces`,
 };
 
 export const ActionCreator = {
@@ -44,12 +46,20 @@ export const ActionCreator = {
     type: ActionType.IS_LOAD_DATA,
     payload: status,
   }),
-  loadRoom: (room) => ({
-    type: ActionType.LOAD_ROOM,
-    payload: room,
-  }),
   changeFetchStatus: (fetchStatus) => ({
     type: ActionType.CHANGE_FETCH_STATUS,
     payload: fetchStatus,
+  }),
+  getCurrentRoom: (room) => ({
+    type: ActionType.GET_CURRENT_ROOM,
+    payload: room,
+  }),
+  loadReviews: (reviews) => ({
+    type: ActionType.LOAD_REVIEWS,
+    payload: reviews,
+  }),
+  getNearPlaces: (nearPlaces) => ({
+    type: ActionType.GET_NEAR_PLACES,
+    payload: nearPlaces,
   }),
 };

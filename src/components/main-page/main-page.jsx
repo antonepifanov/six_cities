@@ -1,15 +1,15 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
-import {HANDLER_TYPES, STRING_TYPES, CITIES_TYPES, BOOLEAN_TYPES} from '../../prop-types/prop-types';
+import {HANDLER_TYPES, STRING_TYPES, CITIES_TYPES, BOOLEAN_TYPES, OFFERS_TYPES} from '../../prop-types/prop-types';
 import Cities from '../cities/cities';
 import CitiesContent from '../cities-content/cities-content';
 import Header from '../header/header';
 import {fetchOffers} from '../../store/api-actions';
 
-const MainPage = ({cities, selectedCity, selectCity, isDataLoaded, onLoadData}) => {
+const MainPage = ({offers, cities, selectedCity, selectCity, isDataLoaded, onLoadData}) => {
   useEffect(() => {
-    if (!isDataLoaded) {
+    if (!isDataLoaded || !offers.length) {
       onLoadData();
     }
   }, [isDataLoaded]);
@@ -33,6 +33,7 @@ const MainPage = ({cities, selectedCity, selectCity, isDataLoaded, onLoadData}) 
 };
 
 MainPage.propTypes = {
+  offers: OFFERS_TYPES,
   selectedCity: STRING_TYPES,
   selectCity: HANDLER_TYPES,
   cities: CITIES_TYPES,
@@ -41,6 +42,7 @@ MainPage.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
+  offers: state.offers,
   cities: state.cities,
   selectedCity: state.selectedCity,
   isDataLoaded: state.isDataLoaded,

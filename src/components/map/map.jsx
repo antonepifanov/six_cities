@@ -1,12 +1,18 @@
 import React, {useEffect, useRef} from 'react';
-import {OFFERS_TYPES, CARD_TYPES} from '../../prop-types/prop-types';
+import {OFFERS_TYPES, CARD_TYPES, HANDLER_TYPES} from '../../prop-types/prop-types';
 import {connect} from 'react-redux';
 import leaflet from "leaflet";
 import "leaflet/dist/leaflet.css";
+import {ActionCreator} from '../../store/action';
 
-const Map = ({placeCards, activeMapPin, room}) => {
+const Map = ({placeCards, activeMapPin, room, setRoomActivePin}) => {
   const mapRef = useRef(null);
   const [firstItem = {}] = placeCards;
+  let places = [...placeCards];
+  if (room) {
+    places = [...placeCards, room];
+    setRoomActivePin(room);
+  }
 
   useEffect(() => {
     const city = firstItem.city;
@@ -27,13 +33,14 @@ const Map = ({placeCards, activeMapPin, room}) => {
 
     return () => {
       mapRef.current.remove();
+      setRoomActivePin(null);
     };
-  }, [placeCards, room]);
+  }, [placeCards]);
 
   useEffect(() => {
     const markersGroup = leaflet.layerGroup().addTo(mapRef.current);
 
-    placeCards.forEach((item) => {
+    places.forEach((item) => {
       const isActive = activeMapPin ? item.id === activeMapPin.id : false;
       const customIcon = leaflet.icon({
         iconUrl: isActive ? `img/pin-active.svg` : `img/pin.svg`,
@@ -63,11 +70,18 @@ Map.propTypes = {
   placeCards: OFFERS_TYPES,
   activeMapPin: CARD_TYPES,
   room: CARD_TYPES,
+  setRoomActivePin: HANDLER_TYPES,
 };
 
 const mapStateToProps = (state) => ({
   activeMapPin: state.activeMapPin,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  setRoomActivePin(pin) {
+    dispatch(ActionCreator.setActiveMapPin(pin));
+  }
+});
+
 export {Map};
-export default connect(mapStateToProps)(Map);
+export default connect(mapStateToProps, mapDispatchToProps)(Map);

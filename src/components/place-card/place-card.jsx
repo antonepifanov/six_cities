@@ -7,8 +7,8 @@ import {STAR_WIDTH} from '../../constants/constants';
 
 const PlaceCard = ({view, className, card, setActiveMapPin, onLinkClick}) => {
   const {id, isFavorite, isPremium, previewImage, price, rating, title, type} = card;
-  const onMouseEnter = () => setActiveMapPin(card);
-  const onMouseLeave = () => setActiveMapPin(null);
+  const onMouseEnter = () => !view && setActiveMapPin(card);
+  const onMouseLeave = () => !view && setActiveMapPin(null);
   const handleClick = () => onLinkClick(id);
 
   return (
