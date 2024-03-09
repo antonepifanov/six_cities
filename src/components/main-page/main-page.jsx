@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/action';
+import {changeCity} from '../../store/action';
 import {HANDLER_TYPES, STRING_TYPES, CITIES_TYPES, BOOLEAN_TYPES, OFFERS_TYPES} from '../../prop-types/prop-types';
 import Cities from '../cities/cities';
 import CitiesContent from '../cities-content/cities-content';
@@ -50,7 +50,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   selectCity(city) {
-    dispatch(ActionCreator.changeCity(city));
+    dispatch(changeCity(city));
   },
   onLoadData() {
     dispatch(fetchOffers());

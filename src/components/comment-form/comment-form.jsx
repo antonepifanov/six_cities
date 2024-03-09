@@ -3,7 +3,7 @@ import {BACKEND_URL, FETCH_STATUS, RATING_TITLES, REVIEW_LENGTH} from '../../con
 import {connect} from 'react-redux';
 import {HANDLER_TYPES, OBJECT_TYPES, STRING_TYPES} from '../../prop-types/prop-types';
 import {postReview} from '../../store/api-actions';
-import {ActionCreator} from '../../store/action';
+import {changeFetchStatus} from '../../store/action';
 
 const CommentForm = ({room, onCommentFormSubmit, fetchStatus}) => {
   const [commentForm, setCommentForm] = useState({
@@ -83,7 +83,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onCommentFormSubmit(reviewData, id) {
-    dispatch(ActionCreator.changeFetchStatus(FETCH_STATUS.SENDING));
+    dispatch(changeFetchStatus(FETCH_STATUS.SENDING));
     dispatch(postReview(reviewData, id));
   }
 });

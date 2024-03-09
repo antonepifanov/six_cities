@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {SORTING_TYPES} from '../../constants/constants';
 import {STRING_TYPES, HANDLER_TYPES} from '../../prop-types/prop-types';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/action';
+import {changeSort} from '../../store/action';
 
 const Sorting = ({selectedCity, activeSorting, changeSorting}) => {
   const [isSortingOpen, setIsSortingOpen] = useState(false);
@@ -57,7 +57,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   changeSorting(sorting) {
-    dispatch(ActionCreator.changeSorting(sorting));
+    dispatch(changeSort(sorting));
   },
 });
 

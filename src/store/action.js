@@ -13,53 +13,62 @@ export const ActionType = {
   GET_NEAR_PLACES: `data/getNearPlaces`,
 };
 
-export const ActionCreator = {
-  changeCity: (city) => ({
-    type: ActionType.CHANGE_CITY,
-    payload: city,
-  }),
-  changeSorting: (sorting) => ({
-    type: ActionType.CHANGE_SORTING,
-    payload: sorting,
-  }),
-  setActiveMapPin: (pin) => ({
-    type: ActionType.SET_ACTIVE_MAP_PIN,
-    payload: pin,
-  }),
-  loadOffers: (offers) => ({
-    type: ActionType.LOAD_OFFERS,
-    payload: offers,
-  }),
-  requireAuthorization: (status) => ({
-    type: ActionType.REQUIRED_AUTHORIZATION,
-    payload: status,
-  }),
-  setUserName: (name) => ({
-    type: ActionType.SET_USER_NAME,
-    payload: name,
-  }),
-  redirectToRoute: (url) => ({
-    type: ActionType.REDIRECT_TO_ROUTE,
-    payload: url,
-  }),
-  isLoadData: (status) => ({
-    type: ActionType.IS_LOAD_DATA,
-    payload: status,
-  }),
-  changeFetchStatus: (fetchStatus) => ({
-    type: ActionType.CHANGE_FETCH_STATUS,
-    payload: fetchStatus,
-  }),
-  getCurrentRoom: (room) => ({
-    type: ActionType.GET_CURRENT_ROOM,
-    payload: room,
-  }),
-  loadReviews: (reviews) => ({
-    type: ActionType.LOAD_REVIEWS,
-    payload: reviews,
-  }),
-  getNearPlaces: (nearPlaces) => ({
-    type: ActionType.GET_NEAR_PLACES,
-    payload: nearPlaces,
-  }),
-};
+export const changeCity = (city) => ({
+  type: ActionType.CHANGE_CITY,
+  payload: city,
+});
+
+export const changeSort = (sorting) => ({
+  type: ActionType.CHANGE_SORTING,
+  payload: sorting,
+});
+
+export const setActivePin = (pin) => ({
+  type: ActionType.SET_ACTIVE_MAP_PIN,
+  payload: pin,
+});
+
+export const loadOffers = (offers) => ({
+  type: ActionType.LOAD_OFFERS,
+  payload: offers,
+});
+
+export const requireAuthorization = (status) => ({
+  type: ActionType.REQUIRED_AUTHORIZATION,
+  payload: status,
+});
+
+export const setUserName = (name) => ({
+  type: ActionType.SET_USER_NAME,
+  payload: name,
+});
+
+export const redirectToRoute = (url) => ({
+  type: ActionType.REDIRECT_TO_ROUTE,
+  payload: url,
+});
+
+export const isLoadData = (status) => ({
+  type: ActionType.IS_LOAD_DATA,
+  payload: status,
+});
+
+export const changeFetchStatus = (fetchStatus) => ({
+  type: ActionType.CHANGE_FETCH_STATUS,
+  payload: fetchStatus,
+});
+
+export const getCurrentRoom = (room) => ({
+  type: ActionType.GET_CURRENT_ROOM,
+  payload: room,
+});
+
+export const loadReviews = (reviews) => ({
+  type: ActionType.LOAD_REVIEWS,
+  payload: reviews,
+});
+
+export const getNearPlaces = (nearPlaces) => ({
+  type: ActionType.GET_NEAR_PLACES,
+  payload: nearPlaces,
+});

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/action';
+import {setActivePin, isLoadData} from '../../store/action';
 import {Link} from 'react-router-dom';
 import {CARD_TYPES, HANDLER_TYPES, STRING_TYPES} from '../../prop-types/prop-types';
 import {STAR_WIDTH} from '../../constants/constants';
@@ -67,10 +67,10 @@ PlaceCard.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   setActiveMapPin(pin) {
-    dispatch(ActionCreator.setActiveMapPin(pin));
+    dispatch(setActivePin(pin));
   },
   onLinkClick() {
-    dispatch(ActionCreator.isLoadData(false));
+    dispatch(isLoadData(false));
   }
 });
 
