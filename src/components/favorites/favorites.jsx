@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {OFFERS_TYPES} from '../../prop-types/prop-types';
 import FavoritesCitySection from '../favorites-city-section/favorites-city-section';
 import Header from '../header/header';
+import FavoritesEmpty from '../favorites-empty/favorites-empty';
 
 const Favorites = ({placeCards}) => {
   const favoriteCards = placeCards.filter((card) => card.isFavorite);
@@ -18,18 +19,20 @@ const Favorites = ({placeCards}) => {
 
     <main className="page__main page__main--favorites">
       <div className="page__favorites-container container">
-        <section className="favorites">
-          <h1 className="favorites__title">Saved listing</h1>
-          <ul className="favorites__list">
-            {cities.map((city) =>
-              <FavoritesCitySection
-                key={city}
-                city={city}
-                favoriteCards={favoriteCards}
-              />)
-            }
-          </ul>
-        </section>
+        {favoriteCards.length === 0
+          ? <FavoritesEmpty />
+          : <section className="favorites">
+            <h1 className="favorites__title">Saved listing</h1>
+            <ul className="favorites__list">
+              {cities.map((city) =>
+                <FavoritesCitySection
+                  key={city}
+                  city={city}
+                  favoriteCards={favoriteCards}
+                />)}
+            </ul>
+          </section>
+        }
       </div>
     </main>
     <footer className="footer container">
