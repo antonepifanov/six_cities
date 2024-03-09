@@ -11,6 +11,8 @@ export const ActionType = {
   CHANGE_FETCH_STATUS: `data/changeFetchStatus`,
   LOAD_REVIEWS: `data/loadReviews`,
   GET_NEAR_PLACES: `data/getNearPlaces`,
+  LOAD_FAVORITES: `data/loadFavorites`,
+  CHANGE_FAVORITE_STATUS: `offers/changeFavoriteStatus`,
 };
 
 export const changeCity = (city) => ({
@@ -30,6 +32,16 @@ export const setActivePin = (pin) => ({
 
 export const loadOffers = (offers) => ({
   type: ActionType.LOAD_OFFERS,
+  payload: offers,
+});
+
+export const changeFavoriteStatus = (card) => ({
+  type: ActionType.CHANGE_FAVORITE_STATUS,
+  payload: card,
+});
+
+export const loadFavorites = (offers) => ({
+  type: ActionType.LOAD_FAVORITES,
   payload: offers,
 });
 

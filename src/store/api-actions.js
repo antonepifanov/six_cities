@@ -1,4 +1,4 @@
-import {loadOffers, requireAuthorization, changeFetchStatus, loadReviews, setUserName, redirectToRoute, isLoadData, getCurrentRoom, getNearPlaces} from "./action";
+import {loadOffers, loadFavorites, requireAuthorization, changeFetchStatus, loadReviews, setUserName, redirectToRoute, isLoadData, getCurrentRoom, getNearPlaces, changeFavoriteStatus} from "./action";
 import {AUTHORIZATION_STATUS, FETCH_STATUS, REQUEST_TIMEOUT} from "../constants/constants";
 import {adaptOfferToClient, adaptOffersToClient, adaptReviewsToClient} from "./selectors";
 
@@ -6,6 +6,21 @@ export const fetchOffers = () => (dispatch, _getState, api) => (
   api.get(`/hotels`)
     .then(({data}) => adaptOffersToClient(data))
     .then((data) => dispatch(loadOffers(data)))
+);
+
+export const getFavorites = () => (dispatch, _getState, api) => (
+  api.get(`/favorite`)
+    .then(({data}) => adaptOffersToClient(data))
+    .then((data) => dispatch(loadFavorites(data)))
+    .then(() => dispatch(changeFetchStatus(FETCH_STATUS.DONE)))
+);
+
+export const sendFavoriteStatus = (id, favorite) => (dispatch, _state, api) => (
+  api.post(`favorite/${id}/${favorite}`)
+    .then(({data}) => dispatch(changeFavoriteStatus(data)))
+    .then(() => dispatch(changeFetchStatus(FETCH_STATUS.DONE)))
+    .catch(() => dispatch(changeFetchStatus(FETCH_STATUS.ERROR)))
+    .finally(() => setTimeout(() => (dispatch(changeFetchStatus(FETCH_STATUS.PENDING))), 5000))
 );
 
 export const checkAuth = () => (dispatch, _getState, api) => (
