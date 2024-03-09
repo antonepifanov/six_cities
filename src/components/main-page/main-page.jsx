@@ -1,15 +1,15 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {changeCity} from '../../store/action';
-import {HANDLER_TYPES, STRING_TYPES, CITIES_TYPES, BOOLEAN_TYPES, OFFERS_TYPES} from '../../prop-types/prop-types';
+import {HANDLER_TYPES, STRING_TYPES, CITIES_TYPES, BOOLEAN_TYPES} from '../../prop-types/prop-types';
 import Cities from '../cities/cities';
 import CitiesContent from '../cities-content/cities-content';
 import Header from '../header/header';
 import {fetchOffers} from '../../store/api-actions';
 
-const MainPage = ({offers, cities, selectedCity, selectCity, isDataLoaded, onLoadData}) => {
+const MainPage = ({cities, selectedCity, selectCity, isDataLoaded, onLoadData}) => {
   useEffect(() => {
-    if (!isDataLoaded || !offers.length) {
+    if (!isDataLoaded) {
       onLoadData();
     }
   }, [isDataLoaded]);
@@ -24,16 +24,13 @@ const MainPage = ({offers, cities, selectedCity, selectCity, isDataLoaded, onLoa
         selectCity={selectCity}
       />
       <div className="cities">
-        <div className="cities__places-container container">
-          <CitiesContent/>
-        </div>
+        <CitiesContent/>
       </div>
     </main>
   </div>;
 };
 
 MainPage.propTypes = {
-  offers: OFFERS_TYPES,
   selectedCity: STRING_TYPES,
   selectCity: HANDLER_TYPES,
   cities: CITIES_TYPES,
@@ -42,7 +39,6 @@ MainPage.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  offers: state.offers,
   cities: state.cities,
   selectedCity: state.selectedCity,
   isDataLoaded: state.isDataLoaded,
