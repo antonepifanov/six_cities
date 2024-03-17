@@ -1,10 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {setActivePin, isLoadData, changeFetchStatus} from '../../store/action';
-import {Link, Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {CARD_TYPES, HANDLER_TYPES, STRING_TYPES} from '../../prop-types/prop-types';
 import {AUTHORIZATION_STATUS, FETCH_STATUS, STAR_WIDTH} from '../../constants/constants';
 import {sendFavoriteStatus} from '../../store/api-actions';
+import browserHistory from '../../services/browser-history';
 
 const PlaceCard = ({view, className, card, setActiveMapPin, onLinkClick, authorizationStatus, onFavoriteStatusClick}) => {
   const {id, isFavorite, isPremium, previewImage, price, rating, title, type} = card;
@@ -14,7 +15,7 @@ const PlaceCard = ({view, className, card, setActiveMapPin, onLinkClick, authori
 
   const handleFavoriteClick = () => {
     if (authorizationStatus === AUTHORIZATION_STATUS.NO_AUTH) {
-      <Redirect to={`/login`}/>;
+      browserHistory.push(`/login`);
     } else {
       const isFavoriteCard = Number(!isFavorite);
       onFavoriteStatusClick(id, isFavoriteCard);
@@ -94,7 +95,7 @@ const mapDispatchToProps = (dispatch) => ({
   onFavoriteStatusClick(id, isFavoriteCard) {
     dispatch(sendFavoriteStatus(id, isFavoriteCard));
     dispatch(changeFetchStatus(FETCH_STATUS.SENDING));
-  }
+  },
 });
 
 export {PlaceCard};
