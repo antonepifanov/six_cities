@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {setActivePin, isLoadData, changeFetchStatus} from '../../store/action';
 import {Link} from 'react-router-dom';
@@ -12,12 +12,14 @@ const PlaceCard = ({view, className, card, setActiveMapPin, onLinkClick, authori
   const onMouseEnter = () => !view && setActiveMapPin(card);
   const onMouseLeave = () => !view && setActiveMapPin(null);
   const handleClick = () => onLinkClick(id);
+  const [isFavoriteClass, setIsFavoriteClass] = useState(isFavorite);
 
   const handleFavoriteClick = () => {
     if (authorizationStatus === AUTHORIZATION_STATUS.NO_AUTH) {
       browserHistory.push(`/login`);
     } else {
       const isFavoriteCard = Number(!isFavorite);
+      setIsFavoriteClass(!isFavoriteClass);
       onFavoriteStatusClick(id, isFavoriteCard);
     }
   };
@@ -44,7 +46,7 @@ const PlaceCard = ({view, className, card, setActiveMapPin, onLinkClick, authori
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button button ${isFavorite ? `place-card__bookmark-button--active` : ``}`}
+          <button className={`place-card__bookmark-button button ${isFavoriteClass ? `place-card__bookmark-button--active` : ``}`}
             type="button"
             onClick={handleFavoriteClick}
           >

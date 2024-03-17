@@ -74,3 +74,12 @@ export const adaptReviewToClient = (review) => {
 export const adaptReviewsToClient = (reviews) => {
   return reviews.map((review) => adaptReviewToClient(review));
 };
+
+export const newOffersList = (offers, currentCard) => {
+  const cardIndex = offers.findIndex((card) => card.id === currentCard.id);
+  if (cardIndex === -1) {
+    return offers;
+  }
+
+  return [...offers.slice(0, cardIndex), currentCard, ...offers.slice(cardIndex + 1)];
+};

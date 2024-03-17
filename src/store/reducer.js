@@ -1,14 +1,6 @@
 import {CITIES_LIST, SORTING_TYPES, AUTHORIZATION_STATUS, FETCH_STATUS} from '../constants/constants';
 import {ActionType} from './action';
-import {getCurrentCityOffers, getCurrentCityOffersBySorting} from './selectors';
-
-const newCardList = (stateCards, currentCard) => {
-  const cardIndex = stateCards.findIndex((card) => card.id === currentCard.id);
-  if (cardIndex === -1) {
-    return stateCards;
-  }
-  return [...stateCards.slice(0, cardIndex), currentCard, ...stateCards.slice(cardIndex + 1)];
-};
+import {getCurrentCityOffers, getCurrentCityOffersBySorting, newOffersList} from './selectors';
 
 const initialState = {
   offers: [],
@@ -74,7 +66,7 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_FAVORITE_STATUS: {
       return {
         ...state,
-        offers: newCardList(state.offers, action.payload),
+        offers: newOffersList(state.offers, action.payload),
       };
     }
 
