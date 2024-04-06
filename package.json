@@ -5,7 +5,8 @@
   "description": "",
   "scripts": {
     "eslint": "eslint --ext .jsx --ext .js src/",
-    "test": "npm run eslint",
+    "test": "npm run eslint && npm run test.jest",
+    "test.jest": "jest --passWithNoTests",
     "build": "webpack --mode production",
     "start": "webpack-dev-server"
   },
@@ -19,6 +20,7 @@
     "@babel/preset-react": "7.12",
     "axios-mock-adapter": "1.19",
     "babel-loader": "8.2",
+    "@testing-library/jest-dom": "5.11.9",
     "jest": "26.6",
     "@testing-library/react": "11.2",
     "redux-mock-store": "1.5",
@@ -45,5 +47,13 @@
     "redux-devtools-extension": "2.13",
     "leaflet": "1.7.1",
     "reselect": "4"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less)$": "<rootDir>/src/style-mock.js"
+    },
+    "setupFilesAfterEnv": [
+      "./setup-tests.js"
+    ]
   }
 }
