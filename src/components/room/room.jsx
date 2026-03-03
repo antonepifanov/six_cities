@@ -11,6 +11,7 @@ import Header from '../header/header';
 import {getRoomData} from '../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
 import NotFoundPage from '../not-found-page/not-found-page';
+import RoomBookmarkButton from '../room-bookmark-button/room-bookmark-button';
 
 const Room = ({authorizationStatus, placeReviews, room, isDataLoaded, onLoadData, nearPlaces}) => {
   const id = Number(useParams().id);
@@ -63,12 +64,7 @@ const Room = ({authorizationStatus, placeReviews, room, isDataLoaded, onLoadData
               <h1 className="property__name">
                 {title}
               </h1>
-              <button className={`property__bookmark-button button ${isFavorite ? `property__bookmark-button--active` : ``}`} type="button">
-                <svg className="property__bookmark-icon" width="31" height="33">
-                  <use xlinkHref="#icon-bookmark"></use>
-                </svg>
-                <span className="visually-hidden">To bookmarks</span>
-              </button>
+              <RoomBookmarkButton id={id} isFavorite={isFavorite}/>
             </div>
             <div className="property__rating rating">
               <div className="property__stars rating__stars">

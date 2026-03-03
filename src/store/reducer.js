@@ -1,6 +1,6 @@
 import {CITIES_LIST, SORTING_TYPES, AUTHORIZATION_STATUS, FETCH_STATUS} from '../constants/constants';
 import {ActionType} from './action';
-import {getCurrentCityOffers, getCurrentCityOffersBySorting} from './selectors';
+import {getCurrentCityOffers, getCurrentCityOffersBySorting, newOffersList} from './selectors';
 
 const initialState = {
   offers: [],
@@ -17,6 +17,7 @@ const initialState = {
   room: null,
   fetchStatus: FETCH_STATUS.PENDING,
   nearPlaces: [],
+  favorites: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -51,6 +52,21 @@ const reducer = (state = initialState, action) => {
         offers: action.payload,
         currentCityOffers: getCurrentCityOffers(action.payload, state.selectedCity),
         isDataLoaded: true,
+      };
+    }
+
+    case ActionType.LOAD_FAVORITES: {
+      return {
+        ...state,
+        favorites: action.payload,
+        isDataLoaded: true,
+      };
+    }
+
+    case ActionType.CHANGE_FAVORITE_STATUS: {
+      return {
+        ...state,
+        offers: newOffersList(state.offers, action.payload),
       };
     }
 

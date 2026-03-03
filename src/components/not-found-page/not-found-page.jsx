@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {ActionCreator} from "../../store/action";
+import {isLoadData} from "../../store/action";
 import {HANDLER_TYPES} from "../../prop-types/prop-types";
 
 const NotFoundPage = ({onLinkClick}) => {
@@ -24,7 +24,7 @@ NotFoundPage.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onLinkClick() {
-    dispatch(ActionCreator.isLoadData(false));
+    dispatch(isLoadData(false));
   }
 });
 

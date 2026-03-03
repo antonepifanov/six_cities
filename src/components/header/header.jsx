@@ -2,7 +2,7 @@ import React from 'react';
 import {Link, useLocation} from 'react-router-dom';
 import HeaderLink from '../header-link/header-link';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/action';
+import {isLoadData} from '../../store/action';
 import {HANDLER_TYPES} from '../../prop-types/prop-types';
 
 const Header = ({onLinkClick}) => {
@@ -47,7 +47,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onLinkClick() {
-    dispatch(ActionCreator.isLoadData(false));
+    dispatch(isLoadData(false));
   }
 });
 

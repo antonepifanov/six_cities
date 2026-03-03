@@ -5,6 +5,7 @@ import CardsList from '../cards-list/cards-list';
 import Map from "../map/map";
 import Sorting from '../sorting/sorting';
 import LoadingScreen from '../loading-screen/loading-screen';
+import MainEmpty from '../main-empty/main-empty';
 
 const CitiesContent = ({selectedCity, currentCityOffers, isDataLoaded}) => {
   if (!isDataLoaded) {
@@ -13,23 +14,25 @@ const CitiesContent = ({selectedCity, currentCityOffers, isDataLoaded}) => {
     );
   }
 
-  return <>
-    {currentCityOffers.length > 0 && <>
-      <section className="cities__places places">
-        <h2 className="visually-hidden">Places</h2>
-        <b className="places__found">{currentCityOffers.length} {currentCityOffers.length === 1 ? `place` : `places`} to stay in {selectedCity}</b>
-        <Sorting/>
-        <CardsList
-          placeCards={currentCityOffers}
-        />
+  if (!currentCityOffers.length) {
+    return <MainEmpty />;
+  }
+
+  return <div className="cities__places-container container">
+    <section className="cities__places places">
+      <h2 className="visually-hidden">Places</h2>
+      <b className="places__found">{currentCityOffers.length} {currentCityOffers.length === 1 ? `place` : `places`} to stay in {selectedCity}</b>
+      <Sorting/>
+      <CardsList
+        placeCards={currentCityOffers}
+      />
+    </section>
+    <div className="cities__right-section">
+      <section className="cities__map map">
+        <Map placeCards={currentCityOffers}/>
       </section>
-      <div className="cities__right-section">
-        <section className="cities__map map">
-          <Map placeCards={currentCityOffers}/>
-        </section>
-      </div>
-    </>}
-  </>;
+    </div>
+  </div>;
 };
 
 CitiesContent.propTypes = {

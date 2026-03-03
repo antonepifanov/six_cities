@@ -1,15 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/action';
+import {setActivePin, isLoadData, changeFetchStatus} from '../../store/action';
 import {Link} from 'react-router-dom';
 import {CARD_TYPES, HANDLER_TYPES, STRING_TYPES} from '../../prop-types/prop-types';
-import {STAR_WIDTH} from '../../constants/constants';
+import {AUTHORIZATION_STATUS, FETCH_STATUS, STAR_WIDTH} from '../../constants/constants';
+import {sendFavoriteStatus} from '../../store/api-actions';
+import browserHistory from '../../services/browser-history';
 
-const PlaceCard = ({view, className, card, setActiveMapPin, onLinkClick}) => {
+const PlaceCard = ({view, className, card, setActiveMapPin, onLinkClick, authorizationStatus, onFavoriteStatusClick}) => {
   const {id, isFavorite, isPremium, previewImage, price, rating, title, type} = card;
   const onMouseEnter = () => !view && setActiveMapPin(card);
   const onMouseLeave = () => !view && setActiveMapPin(null);
   const handleClick = () => onLinkClick(id);
+  const [isFavoriteClass, setIsFavoriteClass] = useState(isFavorite);
+
+  const handleFavoriteClick = () => {
+    if (authorizationStatus === AUTHORIZATION_STATUS.NO_AUTH) {
+      browserHistory.push(`/login`);
+    } else {
+      const isFavoriteCard = Number(!isFavorite);
+      setIsFavoriteClass(!isFavoriteClass);
+      onFavoriteStatusClick(id, isFavoriteCard);
+    }
+  };
 
   return (
     <article className={`${className}__place-card place-card`}
@@ -33,7 +46,10 @@ const PlaceCard = ({view, className, card, setActiveMapPin, onLinkClick}) => {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button button ${isFavorite ? `place-card__bookmark-button--active` : ``}`} type="button">
+          <button className={`place-card__bookmark-button button ${isFavoriteClass ? `place-card__bookmark-button--active` : ``}`}
+            type="button"
+            onClick={handleFavoriteClick}
+          >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
@@ -63,16 +79,26 @@ PlaceCard.propTypes = {
   onLinkClick: HANDLER_TYPES,
   className: STRING_TYPES,
   view: STRING_TYPES,
+  authorizationStatus: STRING_TYPES,
+  onFavoriteStatusClick: HANDLER_TYPES,
 };
+
+const mapStateToProps = (state) => ({
+  authorizationStatus: state.authorizationStatus,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   setActiveMapPin(pin) {
-    dispatch(ActionCreator.setActiveMapPin(pin));
+    dispatch(setActivePin(pin));
   },
   onLinkClick() {
-    dispatch(ActionCreator.isLoadData(false));
-  }
+    dispatch(isLoadData(false));
+  },
+  onFavoriteStatusClick(id, isFavoriteCard) {
+    dispatch(sendFavoriteStatus(id, isFavoriteCard));
+    dispatch(changeFetchStatus(FETCH_STATUS.SENDING));
+  },
 });
 
 export {PlaceCard};
-export default connect(null, mapDispatchToProps)(PlaceCard);
+export default connect(mapStateToProps, mapDispatchToProps)(PlaceCard);

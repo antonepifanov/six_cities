@@ -3,7 +3,7 @@ import {OFFERS_TYPES, CARD_TYPES, HANDLER_TYPES} from '../../prop-types/prop-typ
 import {connect} from 'react-redux';
 import leaflet from "leaflet";
 import "leaflet/dist/leaflet.css";
-import {ActionCreator} from '../../store/action';
+import {setActivePin} from '../../store/action';
 
 const Map = ({placeCards, activeMapPin, room, setRoomActivePin}) => {
   const mapRef = useRef(null);
@@ -79,7 +79,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setRoomActivePin(pin) {
-    dispatch(ActionCreator.setActiveMapPin(pin));
+    dispatch(setActivePin(pin));
   }
 });
 
