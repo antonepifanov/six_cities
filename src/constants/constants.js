@@ -31,7 +31,7 @@ export const AUTHORIZATION_STATUS = {
 
 export const REQUEST_TIMEOUT = 5000;
 
-export const BACKEND_URL = `https://6.react.htmlacademy.pro/six-cities`;
+export const BACKEND_URL = `https://12.react.htmlacademy.pro/six-cities`;
 
 export const REVIEW_LENGTH = {
   MIN: 50,

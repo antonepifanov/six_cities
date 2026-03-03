@@ -1,11 +1,9 @@
 import {ActionCreator} from "./action";
 import {AUTHORIZATION_STATUS, FETCH_STATUS, REQUEST_TIMEOUT} from "../constants/constants";
-import {adaptOfferToClient, adaptOffersToClient, adaptReviewsToClient} from "./selectors";
 
 export const fetchOffers = () => (dispatch, _getState, api) => (
   api.get(`/hotels`)
-    .then(({data}) => adaptOffersToClient(data))
-    .then((data) => dispatch(ActionCreator.loadOffers(data)))
+    .then(({data}) => dispatch(ActionCreator.loadOffers(data)))
 );
 
 export const checkAuth = () => (dispatch, _getState, api) => (
@@ -37,9 +35,9 @@ export const getRoomData = (id) => (dispatch, _getState, api) => (
   ])
   .then(([room, nearBy, reviews]) => {
     return [
-      adaptOfferToClient(room.data),
-      adaptOffersToClient(nearBy.data),
-      adaptReviewsToClient(reviews.data),
+      room.data,
+      nearBy.data,
+      reviews.data,
     ];
   })
   .then(([room, nearBy, reviews]) => {
@@ -53,8 +51,7 @@ export const getRoomData = (id) => (dispatch, _getState, api) => (
 
 export const postReview = ({rating, comment}, id) => (dispatch, _getState, api) => (
   api.post(`/comments/${id}`, {rating, comment})
-    .then(({data}) => adaptReviewsToClient(data))
-    .then((data) => dispatch(ActionCreator.loadReviews(data)))
+    .then(({data}) => dispatch(ActionCreator.loadReviews(data)))
     .then(() => dispatch(ActionCreator.changeFetchStatus(FETCH_STATUS.DONE)))
     .catch(() => dispatch(ActionCreator.changeFetchStatus(FETCH_STATUS.ERROR)))
     .finally(() => setTimeout(() => (dispatch(ActionCreator.changeFetchStatus(FETCH_STATUS.PENDING))), REQUEST_TIMEOUT))
