@@ -13,7 +13,7 @@ export const getFavorites = () => (dispatch, _getState, api) => (
 );
 
 export const sendFavoriteStatus = (id, favorite) => (dispatch, _state, api) => (
-  api.post(`favorite/${id}/${favorite}`)
+  api.post(`/favorite/${id}/${favorite}`)
     .then(({data}) => dispatch(changeFavoriteStatus(data)))
     .then(() => dispatch(changeFetchStatus(FETCH_STATUS.DONE)))
     .catch(() => dispatch(changeFetchStatus(FETCH_STATUS.ERROR)))

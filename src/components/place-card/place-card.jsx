@@ -15,6 +15,7 @@ const PlaceCard = ({view, className, card, setActiveMapPin, onLinkClick, authori
   const [isFavoriteClass, setIsFavoriteClass] = useState(isFavorite);
 
   const handleFavoriteClick = () => {
+    console.log(authorizationStatus)
     if (authorizationStatus === AUTHORIZATION_STATUS.NO_AUTH) {
       browserHistory.push(`/login`);
     } else {
